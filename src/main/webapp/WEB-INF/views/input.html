@@ -1,0 +1,19 @@
+<!doctype html>
+<html class="no-js" lang="zh" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>JdbcTemplate Example|条件</title>
+</head>
+<body>
+	<h2>条件</h2>
+	<form action="#" th:action="@{/user/output}" method="POST"
+		th:object="${user}">
+
+		<input type="text" th:field="*{id}" required /> <br> <input type="text"
+			th:field="*{userName}" /> <br> <input type="text"
+			th:field="*{email}" /> <br> <input type="password"
+			th:field="*{password}" /> <br> <input type="submit"
+			name="submit" value="Submit" />
+	</form>
+</body>
+</html>
