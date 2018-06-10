@@ -1,5 +1,6 @@
 <!doctype html>
-<html class="no-js" lang="zh">
+<html class="no-js" lang="zh" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
 
 <head>
 <meta charset="utf-8">
@@ -8,14 +9,15 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-<link rel="manifest" href="site.webmanifest">
-<link rel="apple-touch-icon" href="icon.png">
+<link rel="manifest" th:href="@{/site.webmanifest}">
+<link rel="apple-touch-icon" th:href="@{/icon.png}">
 <!-- Place favicon.ico in the root directory -->
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="resources/css/bootstrap/bootstrap.min.css">
+<link rel="stylesheet"
+	th:href="@{/resources/css/bootstrap/bootstrap.min.css}">
 <!-- Custom styles for this template -->
-<link href="resources/css/form-validation.css" rel="stylesheet">
+<link th:href="@{/resources/css/form-validation.css}" rel="stylesheet">
 <title>源产直达|注册</title>
 
 </head>
@@ -26,98 +28,19 @@
     <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
   <![endif]-->
 
+	<!-- 页面头部 -->
+	<div id="header" th:include="layout :: header"></div>
+
+
 	<!-- 页面内容 由此开始 -->
-	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-		<a class="navbar-brand" href="#">源产直达</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse"
-			data-target="#navbarsExampleDefault"
-			aria-controls="navbarsExampleDefault" aria-expanded="false"
-			aria-label="Toggle navigation">
-			<span class="navbar-toggler-icon"></span>
-		</button>
-
-		<div class="collapse navbar-collapse" id="navbarsExampleDefault">
-			<ul class="navbar-nav mr-auto">
-				<li class="nav-item active"><a class="nav-link" href="#">首页
-						<span class="sr-only">(current)</span>
-				</a></li>
-				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="http://example.com"
-					id="dropdown01" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false">加入平台</a>
-					<div class="dropdown-menu" aria-labelledby="dropdown01">
-						<a class="dropdown-item" href="#">农户及生产企业</a> <a
-							class="dropdown-item" href="#">配送员</a> <a class="dropdown-item"
-							href="#">服务站</a> <a class="dropdown-item" href="#">推广员</a>
-					</div></li>
-				<li class="nav-item"><a class="nav-link" href="#">关于我们</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">联系我们</a></li>
-			</ul>
-			<!-- 搜索功能暂时不使用
-        <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-        </form>
-         -->
-		</div>
-	</nav>
-
-	<main role="main"> 
-	<!-- 注册 -->
-
+	<main role="main"> <!-- 注册 --> <br>
+	<br>
 	<div class="container">
-		 
-
 		<div class="row">
-			<div class="col-md-4 order-md-2 mb-4">
-				<h4 class="d-flex justify-content-between align-items-center mb-3">
-					<span class="text-muted">Your cart</span> <span
-						class="badge badge-secondary badge-pill">3</span>
-				</h4>
-				<ul class="list-group mb-3">
-					<li
-						class="list-group-item d-flex justify-content-between lh-condensed">
-						<div>
-							<h6 class="my-0">Product name</h6>
-							<small class="text-muted">Brief description</small>
-						</div> <span class="text-muted">$12</span>
-					</li>
-					<li
-						class="list-group-item d-flex justify-content-between lh-condensed">
-						<div>
-							<h6 class="my-0">Second product</h6>
-							<small class="text-muted">Brief description</small>
-						</div> <span class="text-muted">$8</span>
-					</li>
-					<li
-						class="list-group-item d-flex justify-content-between lh-condensed">
-						<div>
-							<h6 class="my-0">Third item</h6>
-							<small class="text-muted">Brief description</small>
-						</div> <span class="text-muted">$5</span>
-					</li>
-					<li class="list-group-item d-flex justify-content-between bg-light">
-						<div class="text-success">
-							<h6 class="my-0">Promo code</h6>
-							<small>EXAMPLECODE</small>
-						</div> <span class="text-success">-$5</span>
-					</li>
-					<li class="list-group-item d-flex justify-content-between"><span>Total
-							(USD)</span> <strong>$20</strong></li>
-				</ul>
-
-				<form class="card p-2">
-					<div class="input-group">
-						<input type="text" class="form-control" placeholder="Promo code">
-						<div class="input-group-append">
-							<button type="submit" class="btn btn-secondary">Redeem</button>
-						</div>
-					</div>
-				</form>
-			</div>
 			<div class="col-md-8 order-md-1">
 				<h4 class="mb-3">Billing address</h4>
-				<form class="needs-validation" novalidate>
+				<form method="POST" class="needs-validation" th:action="@{/signup}"
+					novalidate>
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="firstName">First name</label> <input type="text"
@@ -207,117 +130,77 @@
 						<label class="custom-control-label" for="save-info">Save
 							this information for next time</label>
 					</div>
-					<hr class="mb-4">
 
-					<h4 class="mb-3">Payment</h4>
-
-					<div class="d-block my-3">
-						<div class="custom-control custom-radio">
-							<input id="credit" name="paymentMethod" type="radio"
-								class="custom-control-input" checked required> <label
-								class="custom-control-label" for="credit">Credit card</label>
-						</div>
-						<div class="custom-control custom-radio">
-							<input id="debit" name="paymentMethod" type="radio"
-								class="custom-control-input" required> <label
-								class="custom-control-label" for="debit">Debit card</label>
-						</div>
-						<div class="custom-control custom-radio">
-							<input id="paypal" name="paymentMethod" type="radio"
-								class="custom-control-input" required> <label
-								class="custom-control-label" for="paypal">PayPal</label>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-6 mb-3">
-							<label for="cc-name">Name on card</label> <input type="text"
-								class="form-control" id="cc-name" placeholder="" required>
-							<small class="text-muted">Full name as displayed on card</small>
-							<div class="invalid-feedback">Name on card is required</div>
-						</div>
-						<div class="col-md-6 mb-3">
-							<label for="cc-number">Credit card number</label> <input
-								type="text" class="form-control" id="cc-number" placeholder=""
-								required>
-							<div class="invalid-feedback">Credit card number is
-								required</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-md-3 mb-3">
-							<label for="cc-expiration">Expiration</label> <input type="text"
-								class="form-control" id="cc-expiration" placeholder="" required>
-							<div class="invalid-feedback">Expiration date required</div>
-						</div>
-						<div class="col-md-3 mb-3">
-							<label for="cc-cvv">CVV</label> <input type="text"
-								class="form-control" id="cc-cvv" placeholder="" required>
-							<div class="invalid-feedback">Security code required</div>
-						</div>
-					</div>
-					<hr class="mb-4">
 					<button class="btn btn-primary btn-lg btn-block" type="submit">Continue
 						to checkout</button>
 				</form>
 			</div>
 		</div>
-
-		<footer class="my-5 pt-5 text-muted text-center text-small">
-			<p class="mb-1">&copy; 2017-2018 Company Name</p>
-			<ul class="list-inline">
-				<li class="list-inline-item"><a href="#">Privacy</a></li>
-				<li class="list-inline-item"><a href="#">Terms</a></li>
-				<li class="list-inline-item"><a href="#">Support</a></li>
-			</ul>
-		</footer>
 	</div>
 
 	<!-- /container --> </main>
 
-	<footer class="container">
-		<div class="copyright">
-			<div class="container">
-				<div class="row">
-					<div class="col">
-						<span> Copyright &copy; 2018 <a
-							href="http://www.yuanchanzhida.net/">源产直达 </a></span>| <span>山东蛟龙电子商务有限公司</span>
-						| <span><a href="http://www.miibeian.gov.cn/"
-							target="_blank">鲁ICP备18023266号</a></span>
-					</div>
-				</div>
-			</div>
-		</div>
-	</footer>
+	<!-- 页面底部 -->
+	<div id="footer" th:include="layout :: footer"></div>
+	<input type="hidden" th:value="${contextPath}" name="contextPath" id="contextPath" /> 
 
-	<script src="resources/js/vendor/modernizr-3.6.0.min.js"></script>
-	<script src="resources/js/vendor/jquery-3.3.1.min.js"></script>
-	<script src="resources/js/popper/popper.min.js"></script>
-	<script src="resources/js/bootstrap/bootstrap.min.js"></script>
-	<script src="resources/js/vendor/holder.min.js"></script>
-	<script src="resources/js/plugins.js"></script>
-	<script src="resources/js/main.js"></script>
- <script>
-      // Example starter JavaScript for disabling form submissions if there are invalid fields
-      (function() {
-        'use strict';
 
-        window.addEventListener('load', function() {
-          // Fetch all the forms we want to apply custom Bootstrap validation styles to
-          var forms = document.getElementsByClassName('needs-validation');
+	<script th:src="@{/resources/js/vendor/modernizr-3.6.0.min.js}"></script>
+	<script th:src="@{/resources/js/vendor/jquery-3.3.1.min.js}"></script>
+	<script th:src="@{/resources/js/popper/popper.min.js}"></script>
+	<script th:src="@{/resources/js/bootstrap/bootstrap.min.js}"></script>
+	<script th:src="@{/resources/js/vendor/holder.min.js}"></script>
+	<script th:src="@{/resources/js/plugins.js}"></script>
+	<script th:src="@{/resources/js/main.js}"></script>
+	<script>
+		$(function() {
+			$("#country").change(function() {
+				var country = $("#country").val();
+				$.ajax({
+					type : "POST",
+					url : $("#contextPath").val() + "/commonapi/listState",
+					contentType : "application/json",
+					dataType : "json",
+					data : {
+						id : country
+					},
+					success : function(data) {
+						$("#state").empty();
+						$("#state").append("<option value=''>----请选择----</option>");
+						$.each(data,function(index,item) {
+							console.info("item:" + item.id);
+							//填充内容  
+							$("#state").append("<option value='"+item.id+"'>" + item.text + "</option>");
+						});
+					}
+				});
+			});
+		});
+		// Example starter JavaScript for disabling form submissions if there are invalid fields
+		// (function() {
+		// 	'use strict';
 
-          // Loop over them and prevent submission
-          var validation = Array.prototype.filter.call(forms, function(form) {
-            form.addEventListener('submit', function(event) {
-              if (form.checkValidity() === false) {
-                event.preventDefault();
-                event.stopPropagation();
-              }
-              form.classList.add('was-validated');
-            }, false);
-          });
-        }, false);
-      })();
-    </script>
+		// 	window.addEventListener('load',
+		// 			function() {
+		// 				// Fetch all the forms we want to apply custom Bootstrap validation styles to
+		// 				var forms = document
+		// 						.getElementsByClassName('needs-validation');
+
+		// Loop over them and prevent submission
+		// 				var validation = Array.prototype.filter.call(forms,
+		// 						function(form) {
+		// 							form.addEventListener('submit', function(
+		// 									event) {
+		// 								if (form.checkValidity() === false) {
+		// 									event.preventDefault();
+		// 									event.stopPropagation();
+		// 								}
+		// 								form.classList.add('was-validated');
+		// 							}, false);
+		// 						});
+		// 			}, false);
+		// })();
+	</script>
 	<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 	<!-- 暂时不用
 	<script>

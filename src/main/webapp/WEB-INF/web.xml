@@ -7,17 +7,6 @@
 	version="3.1" metadata-complete="true">
 	<description>yczd</description>
 	<display-name>yczd-hp-web</display-name>
-
-	<!-- Jsp and Servlet Example -->
-	<!-- <servlet>
-		<servlet-name>greeting</servlet-name>
-		<servlet-class>com.yczd.hp.web.sample.servlet.HelloServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>greeting</servlet-name>
-		<url-pattern>/greeting</url-pattern>
-	</servlet-mapping>
-	-->
 	<!-- Spring MVC -->
 	<context-param>
 		<param-name>defaultHtmlEscape</param-name>
@@ -86,7 +75,7 @@
 	</servlet-mapping>
 
 	<welcome-file-list>
-		<welcome-file>index.html</welcome-file>
+		<welcome-file></welcome-file>
 	</welcome-file-list>
 
 </web-app>
