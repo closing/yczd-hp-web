@@ -44,7 +44,7 @@
 		value=".jsp" /> <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" 
 		/> </bean> -->
 	<!-- root path -->
-	<mvc:view-controller path="/" view-name="index" />
+	<!-- <mvc:view-controller path="/" view-name="index" />-->
 
 	<!-- 对静态资源文件的访问 -->
 	<mvc:resources mapping="/resources/img/**"
