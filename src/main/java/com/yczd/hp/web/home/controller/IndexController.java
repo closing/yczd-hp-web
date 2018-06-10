@@ -1,21 +1,15 @@
 package com.yczd.hp.web.home.controller;
 
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
-
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-/**
- * 首页
- * @author zhu
- *
- */
 @Controller
 @RequestMapping("/")
 public class IndexController {
-
-	@RequestMapping(value = { "index", "" }, method = GET)
-	public String index() {
+	@RequestMapping(value = { "", "index" }, method = { RequestMethod.GET, RequestMethod.POST })
+	public String input(Model model) {
 		return "index";
 	}
 }
