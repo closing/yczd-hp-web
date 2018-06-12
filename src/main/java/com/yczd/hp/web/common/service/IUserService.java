@@ -1,6 +1,6 @@
-package com.yczd.hp.web.sample.service;
+package com.yczd.hp.web.common.service;
 
-import com.yczd.hp.web.sample.daodata.User;
+import com.yczd.hp.web.common.daodata.User;
 
 public interface IUserService {
 	public User getUserById(int id);
@@ -8,6 +8,6 @@ public interface IUserService {
 	public int insert(User user);
 
 	public int update(User user);
- 
+
 
 }
