@@ -1,0 +1,258 @@
+<!doctype html>
+<html class="no-js" lang="zh" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge">
+<meta name="description" content="源产直达 农业 ">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<link rel="manifest" th:href="@{/site.webmanifest}">
+<link rel="apple-touch-icon" th:href="@{/icon.png}">
+<!-- Place favicon.ico in the root directory -->
+
+<!-- Bootstrap CSS -->
+<link rel="stylesheet"
+	th:href="@{/resources/css/bootstrap/bootstrap.min.css}">
+<!-- Custom styles for this template -->
+<link th:href="@{/resources/css/form-validation.css}" rel="stylesheet">
+<title>配送员注册|源产直达</title>
+
+</head>
+
+<body>
+
+	<!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+	<!-- 页面头部 -->
+	<div id="header" th:include="layout :: header"></div>
+
+
+	<!-- 页面内容 由此开始 -->
+	<!-- 注册 -->
+	<br>
+	<br>
+	<div class="container">
+		<br>
+		<div class="row">
+			<div class="col-md-8 order-md-1">
+				<h4 class="mb-3">注册信息</h4>
+				<form method="POST" class="needs-validation" th:action="@{/signup/courier}" novalidate>
+					<div class="row">
+						<div class="col-md-4 mb-3">
+							<label for="name">姓名</label>
+							<input type="text"  class="form-control" id="name" placeholder="" value="例:张三">
+							<div class="invalid-feedback">请填写真实姓名</div>
+						</div>
+						<div class="col-md-4 mb-3">
+							<label for="sex">性别</label>
+							<div class="custom-control custom-radio">
+								<input id="male" name="sex" type="radio" class="custom-control-input" checked required>
+								<label class="custom-control-label" for="male">男</label>
+							</div>
+							<div class="custom-control custom-radio">
+								<input id="female" name="sex" type="radio" class="custom-control-input" required>
+								 <label class="custom-control-label" for="female">女</label>
+							</div>
+						</div>
+						<div class="col-md-4 mb-3">
+							<label for="birthday">出生日期</label>
+							<input type="date" class="form-control" id="birthday" placeholder="1982-01-01" value="">
+							<div class="invalid-feedback">请填写出生日期</div>
+						</div>
+					</div>
+					<hr class="mb-4">
+					<div class="mb-3">
+						<label for="mobile">手机号码</label> <input type="text"
+							class="form-control" id="mobile" placeholder="88888888888" required>
+						<div class="invalid-feedback">手机号可用于登录、找回密码、接收订单通知等服务</div>
+					</div>
+					<div class="mb-3">
+						<label for="username">用户名</label> <input type="text"
+							class="form-control" id="username" placeholder="zhangsan" required>
+						<div class="invalid-feedback" style="width: 100%;">用户名可用于登录</div>
+
+					</div>
+					<div class="mb-3">
+						<label for="email">邮箱</label>
+						<input type="email" class="form-control" id="email"
+							placeholder="you@example.com">
+						<div class="invalid-feedback">邮箱可用于登录、找回密码、接收订单通知等服务</div>
+					</div>
+
+					<hr class="mb-4">
+					<h4 class="mb-3">地址</h4>
+					<div class="row">
+						<div class="col-md-3 mb-3">
+							<label for="province"></label> <select
+								class="custom-select d-block w-100" id="province">
+								<option value="">----请选择----</option>
+								<option th:each="item:${areaList}" th:value="${item.code}"
+									th:text="${item.name}"></option>
+							</select>
+							<div class="invalid-feedback">Please select a valid
+								country.</div>
+						</div>
+						<div class="col-md-3 mb-3">
+							<label for="city"></label><select
+								class="custom-select d-block w-100" id="city">
+								<option value="">----请选择----</option>
+							</select>
+						</div>
+						<div class="col-md-3 mb-3">
+							<label for="area"></label> <select
+								class="custom-select d-block w-100" id="area">
+								<option value="">----请选择----</option>
+							</select>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-4 mb-3">
+							<label for="address"></label>
+							<input type="text" class="form-control" id="address" placeholder="" >
+							<div class="invalid-feedback">请填写小区街道等详细信息</div>
+						</div>
+					</div>
+					<hr class="mb-4">
+					<div class="custom-control custom-checkbox">
+						<input type="checkbox" class="custom-control-input" id="subscribe"
+							checked> <label class="custom-control-label"
+							for="subscribe">订阅</label>
+						<div class="invalid-feedback">可以通过邮箱和手机接受各种通知信息</div>
+					</div>
+
+					<button class="btn btn-primary btn-lg btn-block" type="submit">注册</button>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- /container -->
+
+	<!-- 页面底部 -->
+	<div id="footer" th:include="layout :: footer"></div>
+	<!-- hidden start  -->
+	<input type="hidden" th:value="${contextPath}" name="contextPath"
+		id="contextPath" />
+
+	<!-- hidden end -->
+
+	<script th:src="@{/resources/js/vendor/modernizr-3.6.0.min.js}"></script>
+	<script th:src="@{/resources/js/vendor/jquery-3.3.1.min.js}"></script>
+	<script th:src="@{/resources/js/popper/popper.min.js}"></script>
+	<script th:src="@{/resources/js/bootstrap/bootstrap.min.js}"></script>
+	<script th:src="@{/resources/js/vendor/holder.min.js}"></script>
+	<script th:src="@{/resources/js/plugins.js}"></script>
+	<script th:src="@{/resources/js/area.js}"></script>
+	<script>
+		$(function() {
+			$("#province")
+					.change(
+							function() {
+								var province = $("#province").val();
+								var city = $("#city");
+								var area = $("#area");
+								$(city).empty();
+								$(city)
+										.append(
+												"<option value=''>----请选择----</option>");
+								$(area).empty();
+								$(area)
+										.append(
+												"<option value=''>----请选择----</option>");
+								if (province != "") {
+									$.ajax({
+										type : "POST",
+										url : $("#contextPath").val()
+												+ "/commonapi/listArea",
+										//contentType : "application/json",
+										dataType : "json",
+										data : {
+											"id" : province
+										},
+										success : function(data) {
+											$.each(data, function(index, item) {
+												//填充内容
+												$("#city").append(
+														"<option value='"+item.code+"'>"
+																+ item.name
+																+ "</option>");
+											});
+										}
+									});
+								}
+							});
+			$("#city")
+					.change(
+							function() {
+								var city = $("#city").val();
+								var area = $("#area");
+								$(area).empty();
+								$(area)
+										.append(
+												"<option value=''>----请选择----</option>");
+								if (city != "") {
+									$.ajax({
+										type : "POST",
+										url : $("#contextPath").val()
+												+ "/commonapi/listArea",
+										//contentType : "application/json",
+										dataType : "json",
+										data : {
+											"id" : city
+										},
+										success : function(data) {
+											$.each(data, function(index, item) {
+												//填充内容
+												$("#area").append(
+														"<option value='"+item.code+"'>"
+																+ item.name
+																+ "</option>");
+											});
+										}
+									});
+								}
+							});
+		});
+		// Example starter JavaScript for disabling form submissions if there are invalid fields
+		// (function() {
+		// 	'use strict';
+		// 	window.addEventListener('load',
+		// 			function() {
+		// 				// Fetch all the forms we want to apply custom Bootstrap validation styles to
+		// 				var forms = document
+		// 						.getElementsByClassName('needs-validation');
+		// Loop over them and prevent submission
+		// 				var validation = Array.prototype.filter.call(forms,
+		// 						function(form) {
+		// 							form.addEventListener('submit', function(
+		// 									event) {
+		// 								if (form.checkValidity() === false) {
+		// 									event.preventDefault();
+		// 									event.stopPropagation();
+		// 								}
+		// 								form.classList.add('was-validated');
+		// 							}, false);
+		// 						});
+		// 			}, false);
+		// })();
+	</script>
+	<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+	<!-- 暂时不用
+	<script>
+		window.ga = function() {
+			ga.q.push(arguments)
+		};
+		ga.q = [];
+		ga.l = +new Date;
+		ga('create', 'UA-XXXXX-Y', 'auto');
+		ga('send', 'pageview')
+	</script>
+	<script src="https://www.google-analytics.com/analytics.js" async defer></script>
+	 -->
+</body>
+
+</html>
