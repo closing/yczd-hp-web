@@ -1,4 +1,4 @@
-package com.yczd.hp.web.sample.daodata;
+package com.yczd.hp.web.common.daodata;
 
 public class User {
 	private Integer id;
@@ -40,3 +40,4 @@ public class User {
 	}
 
 }
+
