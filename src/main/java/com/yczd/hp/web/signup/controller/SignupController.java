@@ -84,11 +84,23 @@ public class SignupController {
 		} else {
 			user.setUserType("10"); // 个人:10
 		}
-		user.setBirthday(Date.valueOf(form.getBirthday()));
-		user.setSubscribe(Boolean.valueOf(form.getSubscribe()));
-		user.setAddress1(Integer.valueOf(form.getAddress1()));
-		user.setAddress2(Integer.valueOf(form.getAddress2()));
-		user.setAddress3(Integer.valueOf(form.getAddress3()));
+		if (!StringUtils.isEmpty(form.getBirthday())) {
+			user.setBirthday(Date.valueOf(form.getBirthday()));
+		}
+		if (!StringUtils.isEmpty(form.getSubscribe())) {
+			user.setSubscribe(Boolean.valueOf(form.getSubscribe()));
+		} else {
+			user.setSubscribe(false);
+		}
+		if (!StringUtils.isEmpty(form.getAddress1())) {
+			user.setAddress1(Integer.valueOf(form.getAddress1()));
+		}
+		if (!StringUtils.isEmpty(form.getAddress2())) {
+			user.setAddress2(Integer.valueOf(form.getAddress2()));
+		}
+		if (!StringUtils.isEmpty(form.getAddress3())) {
+			user.setAddress3(Integer.valueOf(form.getAddress3()));
+		}
 		userService.insert(user);
 		return "wechat/signup_success";
 	}

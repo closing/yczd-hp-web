@@ -16,9 +16,9 @@ public class User {
 	private String sex;
 	private Date birthday;
 
-	private int address1;
-	private int address2;
-	private int address3;
+	private Integer address1;
+	private Integer address2;
+	private Integer address3;
 	private String address4;
 
 	private String contact;
@@ -77,27 +77,27 @@ public class User {
 		this.birthday = birthday;
 	}
 
-	public int getAddress1() {
+	public Integer getAddress1() {
 		return address1;
 	}
 
-	public void setAddress1(int address1) {
+	public void setAddress1(Integer address1) {
 		this.address1 = address1;
 	}
 
-	public int getAddress2() {
+	public Integer getAddress2() {
 		return address2;
 	}
 
-	public void setAddress2(int address2) {
+	public void setAddress2(Integer address2) {
 		this.address2 = address2;
 	}
 
-	public int getAddress3() {
+	public Integer getAddress3() {
 		return address3;
 	}
 
-	public void setAddress3(int address3) {
+	public void setAddress3(Integer address3) {
 		this.address3 = address3;
 	}
 
