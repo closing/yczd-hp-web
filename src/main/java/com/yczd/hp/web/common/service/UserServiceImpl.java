@@ -1,11 +1,11 @@
-package com.yczd.hp.web.sample.service;
+package com.yczd.hp.web.common.service;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.yczd.hp.web.sample.dao.IUserDao;
-import com.yczd.hp.web.sample.daodata.User;
+import com.yczd.hp.web.common.dao.IUserDao;
+import com.yczd.hp.web.common.daodata.User;
 
 @Service("userService")
 public class UserServiceImpl implements IUserService {
