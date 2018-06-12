@@ -11,9 +11,9 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.yczd.hp.web.sample.daodata.User;
-import com.yczd.hp.web.sample.formdata.UserForm;
-import com.yczd.hp.web.sample.service.IUserService;
+import com.yczd.hp.web.common.daodata.User;
+import com.yczd.hp.web.common.formdata.UserForm;
+import com.yczd.hp.web.common.service.IUserService;
 
 @Controller
 @RequestMapping("/user")
