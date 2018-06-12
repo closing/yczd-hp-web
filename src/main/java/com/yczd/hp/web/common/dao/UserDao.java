@@ -1,4 +1,4 @@
-package com.yczd.hp.web.sample.dao;
+package com.yczd.hp.web.common.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,7 +13,7 @@ import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
 import org.springframework.stereotype.Repository;
 
-import com.yczd.hp.web.sample.daodata.User;
+import com.yczd.hp.web.common.daodata.User;
 
 @Repository
 @Scope("prototype")
