@@ -1,6 +1,6 @@
 DROP TABLE IF EXISTS `user`;  
 CREATE TABLE `user` (  
-  	`id` int(11) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID',  
+  	`id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID',  
   	`user_type` char(2) NOT NULL  COMMENT '用户类型 个人:10 商户:20 企业:21 服务站:30 配送员:40',
   	`user_name` varchar(20) NOT NULL COMMENT '系统登陆用户名',
 	`mobilephone`  varchar(11) NOT NULL  COMMENT '手机号码',
@@ -29,4 +29,4 @@ CREATE TABLE `user` (
   UNIQUE KEY `idx_name` (`name`),  
   UNIQUE KEY `idx_mobilephone` (`mobilephone`),
   UNIQUE KEY `idx_email` (`email`)   
-) ENGINE=MyISAM AUTO_INCREMENT=10000000000 DEFAULT CHARSET=gbk COMMENT='用户信息收集表';  
+) ENGINE=MyISAM AUTO_INCREMENT=1000000000 DEFAULT CHARSET=gbk COMMENT='用户信息收集表';  
