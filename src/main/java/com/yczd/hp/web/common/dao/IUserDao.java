@@ -11,5 +11,5 @@ public interface IUserDao {
 
 	public int delete(User user);
 
-	public int count(int id);
+	public boolean check(String key);
 }
