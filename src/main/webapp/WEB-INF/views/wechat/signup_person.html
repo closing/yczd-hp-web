@@ -224,7 +224,6 @@
 	            checkReg.tool.switchInputStyle('normal','mobilePhone', 'J_tipImgMobile','tipInfoMobilePhone');
 	            mobilePhoneIsOk = false;
 	            var mobilePhoneExist = false;
-
 	            var mobilePhone = $.trim($('#mobilePhone').val());
 	            if( oldMobilePhone != mobilePhone){
 	                isUpdateMobilePhone = true;
@@ -233,13 +232,11 @@
 	            if (mobilePhone == '') {
 	                return false;
 	            }
-
 	            if (!checkReg.mobilePhoneReg.test(mobilePhone)) {
 	                checkReg.tool.switchInputStyle('error','mobilePhone', 'J_tipImgMobile','tipInfoMobilePhone');
 	                $('#tipInfoMobilePhone').html(checkReg.lang_zh['3203']);
 	                return false;
 	            }
-
 	            $.ajax({
 	            	type: 'POST',
 	                url: $("#contextPath").val() + '/commonapi/checkUser',
@@ -250,7 +247,7 @@
 	                success: function (flg) {
 	                    if (flg == false) {
 	                        checkReg.tool.switchInputStyle('error','mobilePhone', 'J_tipImgMobile','tipInfoMobilePhone');
-	                        $('#tipInfoMobilePhone').html(checkReg.lang_zh['3204'].replace('{#Email#}', mobilePhone));
+	                        $('#tipInfoMobilePhone').html(checkReg.lang_zh['3204']);
 	                        mobilePhoneExist = true;
 	                        return false;
 	                    }
@@ -261,8 +258,7 @@
 	            }
 	            checkReg.tool.switchInputStyle('ok','mobilePhone', 'J_tipImgMobile','tipInfoMobilePhone');
 	            mobilePhoneIsOk = true;
-
-	            isUpdatePhonePhone = false;
+	            isUpdateMobilePhone = false;
 	            return true;
 	        }
 	    },
