@@ -72,7 +72,7 @@ public class SignupController {
 			return "redirect:/signup/person";
 		}
 		User user = new User();
-		BeanUtils.copyProperties(form, user);
+		//BeanUtils.copyProperties(form, user);
 		if ("company".equals(type)) {
 			user.setUserType("21");// 企业:21
 		} else if ("supplyer".equals(type)) {
@@ -84,23 +84,17 @@ public class SignupController {
 		} else {
 			user.setUserType("10"); // 个人:10
 		}
-		if (!StringUtils.isEmpty(form.getBirthday())) {
-			user.setBirthday(Date.valueOf(form.getBirthday()));
-		}
-		if (!StringUtils.isEmpty(form.getSubscribe())) {
-			user.setSubscribe(Boolean.valueOf(form.getSubscribe()));
-		} else {
-			user.setSubscribe(false);
-		}
-		if (!StringUtils.isEmpty(form.getAddress1())) {
-			user.setAddress1(Integer.valueOf(form.getAddress1()));
-		}
-		if (!StringUtils.isEmpty(form.getAddress2())) {
-			user.setAddress2(Integer.valueOf(form.getAddress2()));
-		}
-		if (!StringUtils.isEmpty(form.getAddress3())) {
-			user.setAddress3(Integer.valueOf(form.getAddress3()));
-		}
+		user.setUserName(StringUtils.isEmpty(form.getUserName()) ? null : form.getUserName());
+		user.setEmail(StringUtils.isEmpty(form.getEmail()) ? null : form.getEmail());
+		user.setName(StringUtils.isEmpty(form.getName()) ? null : form.getName());
+		user.setSex(StringUtils.isEmpty(form.getSex()) ? null : form.getSex());
+		user.setBirthday(StringUtils.isEmpty(form.getBirthday()) ? null : Date.valueOf(form.getBirthday()));
+		user.setAddress1(StringUtils.isEmpty(form.getAddress1()) ? null : Integer.valueOf(form.getAddress1()));
+		user.setAddress2(StringUtils.isEmpty(form.getAddress2()) ? null : Integer.valueOf(form.getAddress2()));
+		user.setAddress3(StringUtils.isEmpty(form.getAddress3()) ? null : Integer.valueOf(form.getAddress3()));
+		user.setAddress4(StringUtils.isEmpty(form.getAddress4()) ? null : form.getAddress4());
+		user.setSubscribe(StringUtils.isEmpty(form.getSubscribe()) ? false : Boolean.valueOf(form.getSubscribe()));
+
 		userService.insert(user);
 		return "wechat/signup_success";
 	}
