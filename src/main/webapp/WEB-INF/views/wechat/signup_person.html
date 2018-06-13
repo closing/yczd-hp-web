@@ -41,46 +41,46 @@
 		<div class="row">
 			<div class="col-md-8 order-md-1">
 				<h4 class="mb-3">注册信息</h4>
-				<form method="POST" class="needs-validation" th:action="@{/signup/person}"  th:object="${user}" novalidate>
+				<form method="POST" th:action="@{/signup/person}"  th:object="${user}">
 					<div class="mb-3">
-						<label for="mobile">手机号码</label> <input type="text"
-							class="form-control" th:field="*{mobilePhone}" placeholder="88888888888" required>
-						<div class="invalid-feedback">手机号可用于登录、找回密码、接收订单通知等服务</div>
+						<label for="mobile">手机号码</label>
+							<input type="text" class="form-control" th:field="*{mobilePhone}" placeholder="88888888888">
+						<div class="invalid-feedback" id="tipInfoMobilePhone" style="z-index: 1"></div>
 					</div>
 					<div class="mb-3">
 						<label for="userName">用户名</label> <input type="text"
-							class="form-control" th:field="*{userName}" placeholder="zhangsan" required>
-						<div class="invalid-feedback" style="width: 100%;">用户名可用于登录</div>
+							class="form-control" th:field="*{userName}" placeholder="zhangsan">
+						<div class="invalid-feedback" id="tipInfoUserName"></div>
 
 					</div>
 					<div class="mb-3">
 						<label for="email">邮箱</label>
 						<input type="email" class="form-control" th:field="*{email}"
 							placeholder="you@example.com">
-						<div class="invalid-feedback">邮箱可用于登录、找回密码、接收订单通知等服务</div>
+						<div class="invalid-feedback" id="tipInfoEmail"></div>
 					</div>
 					<hr class="mb-4">
 					<div class="row">
 						<div class="col-md-4 mb-3">
 							<label for="name">姓名</label>
 							<input type="text"  class="form-control" th:field="*{name}" placeholder="例:张三" >
-							<div class="invalid-feedback">请填写真实姓名</div>
+							<div class="invalid-feedback" id="tipInfoName"></div>
 						</div>
 						<div class="col-md-4 mb-3">
 							<label for="sex">性别</label>
 							<div class="custom-control custom-radio">
-								<input id="male" name="sex" type="radio" class="custom-control-input"  value="1" checked required>
+								<input id="male" name="sex" type="radio" class="custom-control-input"  value="1" checked>
 								<label class="custom-control-label" for="male">男</label>
 							</div>
 							<div class="custom-control custom-radio">
-								<input id="female" name="sex" type="radio" class="custom-control-input"  value="0" required>
+								<input id="female" name="sex" type="radio" class="custom-control-input"  value="0">
 								<label class="custom-control-label" for="female">女</label>
 							</div>
 						</div>
 						<div class="col-md-4 mb-3">
 							<label for="birthday">出生日期</label>
 							<input type="date" class="form-control" th:field="*{birthday}" placeholder="1982-01-01" >
-							<div class="invalid-feedback">请填写出生日期</div>
+							<div class="invalid-feedback" id="tipInfoBirthday">请填写出生日期</div>
 						</div>
 					</div>
 					<hr class="mb-4">
@@ -91,7 +91,7 @@
 								<option value="">----请选择----</option>
 								<option th:each="item:${areaList}" th:value="${item.code}" th:text="${item.name}"></option>
 							</select>
-							<div class="invalid-feedback">Please select a valid country.</div>
+							<div class="invalid-feedback"></div>
 						</div>
 						<div class="col-md-4 mb-3">
 							<label for="address2"></label>
@@ -109,19 +109,19 @@
 					<div class="row">
 						<div class="col-md-4 mb-3">
 							<label for="address4"></label>
-							<input type="text" class="form-control" th:field="*{address4}" placeholder="请填写小区街道等详细信息" >
-							<div class="invalid-feedback">请填写小区街道等详细信息</div>
+							<input type="text" class="form-control" th:field="*{address4}" placeholder="请填写地址详细信息" >
+							<div class="invalid-feedback" id="tipInfoAddress4"></div>
 						</div>
 					</div>
 					<hr class="mb-4">
 					<div class="custom-control custom-checkbox">
 						<input type="checkbox" class="custom-control-input"  name="subscribe"  value="true" checked>
 						<label class="custom-control-label" for="subscribe">订阅</label>
-						<div class="invalid-feedback">可以通过邮箱和手机接受各种通知信息</div>
+						<div class="invalid-feedback" id="tipInfoSubscribe">可以通过邮箱和手机接受各种通知信息</div>
 					</div>
 
 					<button class="btn btn-primary btn-lg btn-block" id="saveButton" type="submit">注册</button>
-					<button class="btn btn-primary btn-lg btn-block disabled hidden"  id="saveButtonUnclick" type="submit">注册</button>
+					<button class="btn btn-primary btn-lg btn-block disabled hidden" id="saveButtonUnclick" type="submit">注册</button>
 				</form>
 			</div>
 		</div>
@@ -161,7 +161,7 @@
 // 	var timeoutrun = 0; //倒计时计数器
 	var checkReg = {
 	    emailReg: /^(([a-zA-Z0-9]+\w*((\.\w+)|(-\w+))*[\.-]?[a-zA-Z0-9]+)|([a-zA-Z0-9]))\@[a-zA-Z0-9]+((\.|-)[a-zA-Z0-9]+)*\.[a-zA-Z0-9]+$/, //匹配邮箱
-	    mobileReg: /^1[3,4,5,6,7,8,9][0-9]{9}$/,//匹配电话号码
+	    mobilePhoneReg: /^1[3,4,5,6,7,8,9][0-9]{9}$/,//匹配电话号码
 	    numberReg: /^[0-9]*$/,//匹配数字
 	    linkmanReg: /^(\w|[\u4E00-\u9FA5]|\s)*$/,//匹配匹配 数字 字母下 划线 汉字 空白
 		upperCaseReg: /[A-Z]/g,
@@ -177,15 +177,10 @@
 	        '3106' : '用户名不能全由数字组成！',
 	        '3107' : '用户名不能有大写字母！',
 			'3108' : '用户名只能是数字，小写字母和下划线',
-	        '3111' : '密码为6-20个字符，可由英文、数字及符号组成',
-	        '3112' : '登录密码不能为空',
-	        '3113' : '密码长度6-20个字符，请重新输入',
-	        '3115' : '密码不能包含“空格”，请重新输入',
-	        '3116' : '密码为6-20位字符,只能由英文、数字及符号组成',
-	        '3121' : '请再次输入密码',
-	        '3122' : '密码不能为空',
-	        '3123' : '两次输入的密码不一致，请重新输入',
-	        //企业及联系人信息
+			// 个人信息
+			'3110' : '请填写真实姓名',
+			'3111' : '请填写出生年月日',
+			//企业及联系人信息
 	        '3131' : '请填写单位执照上得名称，最长为30个汉字（60个字符）',
 	        '3132' : '公司名称不能为空',
 	        '3133' : '公司名称最长只能为30个汉字（60个字符）',
@@ -222,11 +217,11 @@
 	    },
 	    mobilePhone: {
 	        checkMobilePhoneFocus: function(){
-	            checkReg.tool.switchInputStyle('normal','mobilePhone', 'J_tipImgMobile','J_tipInfoMobile');
-	            $('#J_tipInfoMobile').html(checkReg.lang_zh['3201']);
+	            checkReg.tool.switchInputStyle('normal','mobilePhone', 'tipImgMobilePhone','tipInfoMobilePhone');
+	            $('#tipInfoMobilePhone').html(checkReg.lang_zh['3201']);
 	        },
 	        checkMobilePhone: function(){
-	            checkReg.tool.switchInputStyle('normal','mobilePhone', 'J_tipImgMobile','J_tipInfoMobile');
+	            checkReg.tool.switchInputStyle('normal','mobilePhone', 'J_tipImgMobile','tipInfoMobilePhone');
 	            mobilePhoneIsOk = false;
 	            var mobilePhoneExist = false;
 
@@ -240,8 +235,8 @@
 	            }
 
 	            if (!checkReg.mobilePhoneReg.test(mobilePhone)) {
-	                checkReg.tool.switchInputStyle('error','mobilePhone', 'J_tipImgMobile','J_tipInfoMobile');
-	                $('#J_tipInfoMobile').html(checkReg.lang_zh['3203']);
+	                checkReg.tool.switchInputStyle('error','mobilePhone', 'J_tipImgMobile','tipInfoMobilePhone');
+	                $('#tipInfoMobilePhone').html(checkReg.lang_zh['3203']);
 	                return false;
 	            }
 
@@ -253,9 +248,9 @@
 	                	'key': mobilePhone,
 	                },
 	                success: function (flg) {
-	                    if (flg == "false") {
-	                        checkReg.tool.switchInputStyle('error','mobilePhone', 'J_tipImgMobile','J_tipInfoMobile');
-	                        $('#J_tipInfoMobile').html(checkReg.lang_zh['3204'].replace('{#Email#}', mobile));
+	                    if (flg == false) {
+	                        checkReg.tool.switchInputStyle('error','mobilePhone', 'J_tipImgMobile','tipInfoMobilePhone');
+	                        $('#tipInfoMobilePhone').html(checkReg.lang_zh['3204'].replace('{#Email#}', mobilePhone));
 	                        mobilePhoneExist = true;
 	                        return false;
 	                    }
@@ -264,7 +259,7 @@
 	            if (mobilePhoneExist == true) {
 	                return false;
 	            }
-	            checkReg.tool.switchInputStyle('ok','mobilePhone', 'J_tipImgMobile','J_tipInfoMobile');
+	            checkReg.tool.switchInputStyle('ok','mobilePhone', 'J_tipImgMobile','tipInfoMobilePhone');
 	            mobilePhoneIsOk = true;
 
 	            isUpdatePhonePhone = false;
@@ -274,7 +269,7 @@
 	    userName: {
 	        checkFocus: function(){
 	            checkReg.tool.switchInputStyle('normal','userName', 'J_tipImgUserName','tipUserName');
-	            $('#J_tipInfoUserName').html(checkReg.lang_zh['3101']);
+	            $('#tipInfoUserName').html(checkReg.lang_zh['3101']);
 	        },
 	        checkKeypress: function(){
 	        	var userName = $.trim($('#userName').val());
@@ -284,31 +279,31 @@
 	        	//格式正确性验证
 	            var verifyObj = checkReg.tool.VerifyCharLength(userName, 20);
 	            if(verifyObj && ('flag' in verifyObj) && verifyObj.flag===false){
-	                checkReg.tool.switchInputStyle('error','userName', 'J_tipImgUserName','J_tipInfoUserName');
-	                $('#J_tipInfoUserName').text(checkReg.lang_zh['3105']);
-	                $('#J_userName').val(userName.substr(0,verifyObj.charLen));
+	                checkReg.tool.switchInputStyle('error','userName', 'J_tipImgUserName','tipInfoUserName');
+	                $('#tipInfoUserName').text(checkReg.lang_zh['3105']);
+	                $('#userName').val(userName.substr(0,verifyObj.charLen));
 	                return false;
 	            }else{
-	            	checkReg.tool.switchInputStyle('normal','userName', 'J_tipImgUserName','J_tipInfoUserName');
+	            	checkReg.tool.switchInputStyle('normal','userName', 'J_tipImgUserName','tipInfoUserName');
 	            }
 	        },
 	        checkUserName: function(){
 	        	userNameIsOk = false;
 	            var userNameExist = false;
-	            checkReg.tool.switchInputStyle('normal','userName', 'J_tipImgUserName','J_tipInfoUserName');
+	            checkReg.tool.switchInputStyle('normal','userName', 'J_tipImgUserName','tipInfoUserName');
 
 	            var userName = $.trim($('#userName').val());
 	            if (userName == '') {
-	            	// 可以空,可以稍后设置
-	            	userNameIsOk = true;
-	                return true;
+	            	// 不可以空,可以稍后设置
+	            	userNameIsOk = false;
+	                return false;
 	            }
 
 	            //格式正确性验证
 	            var verifyObj = checkReg.userName.VerifyFormatUserName(userName);
 	            if(verifyObj && ('flag' in verifyObj) && verifyObj.flag===false){
-	                checkReg.tool.switchInputStyle('error','userName', 'J_tipImgUserName','J_tipInfoUserName');
-	                $('#J_tipInfoUserName').text(verifyObj.errorInfo);
+	                checkReg.tool.switchInputStyle('error','userName', 'J_tipImgUserName','tipInfoUserName');
+	                $('#tipInfoUserName').text(verifyObj.errorInfo);
 	                return false;
 	            }
 	            //唯一性验证
@@ -320,9 +315,9 @@
 	                	'key': userName,
 	                },
 	                success : function(flg) {
-						if (flg == "false") {
-	                        checkReg.tool.switchInputStyle('error','userName', 'J_tipImgUserName','J_tipInfoUserName');
-	                        $('#J_tipInfoUserName').html(checkReg.lang_zh['3103'].replace('{#userName#}', userName));
+						if (flg == false) {
+	                        checkReg.tool.switchInputStyle('error','userName', 'J_tipImgUserName','tipInfoUserName');
+	                        $('#tipInfoUserName').html(checkReg.lang_zh['3103'].replace('{#userName#}', userName));
 	                        userNameExist = true;
 	                        return false;
 	                    }
@@ -334,7 +329,7 @@
 	            if (userNameExist == true) {
 	                return false;
 	            }
-	            checkReg.tool.switchInputStyle('ok','userName', 'J_tipImgUserName','J_tipInfoUserName');
+	            checkReg.tool.switchInputStyle('ok','userName', 'J_tipImgUserName','tipInfoUserName');
 	            userNameIsOk = true;
 	            return true;
 	        },
@@ -358,7 +353,7 @@
 	                    errorInfo = checkReg.lang_zh['3107'];
 	                    textFlag = false;
 	                }else{
-	                    if(str.match(checkReg.companNameReg)){
+	                    if(str.match(checkReg.userNameReg)){
 	                        textFlag = true;
 	                    } else {
 	                        errorInfo = checkReg.lang_zh['3108'];
@@ -628,17 +623,17 @@
             //将单元格恢复到最初样式
             switchInputStyle: function(showType, inputId, tipImgId, tipInfoId){
                 if(showType == 'normal') {
-                    $('#' + inputId).removeClass('wl_select_change');
-                    $('#' + tipImgId).hide();
-                    $('#' + tipInfoId).addClass('info_normal').html('').css({'display':'block'});
+                    $('#' + inputId).removeClass('was-validated is-invalid is-valid');
+                    // $('#' + tipImgId).hide();
+                    $('#' + tipInfoId).removeClass('invalid-feedback').addClass('valid-feedback').html('').css({'display':'block'});
                 }else if(showType == 'ok') {
-                    $('#' + inputId).removeClass('wl_select_change');
-                    $('#' + tipImgId).removeClass('wl_select_icon22').css({'display':'inline-block'});
-                    $('#' + tipInfoId).addClass('info_normal').css({'display':'block'});
+                    $('#' + inputId).addClass('was-validated is-valid').removeClass('is-invalid');
+                    // $('#' + tipImgId).removeClass('wl_select_icon22').css({'display':'inline-block'});
+                    $('#' + tipInfoId).removeClass('invalid-feedback').addClass('valid-feedback').css({'display':'block'});
                 } else if(showType == 'error') {
-                    $('#' + inputId).addClass('wl_select_change');
-                    $('#' + tipImgId).addClass('wl_select_icon22').css({'display':'inline-block'});
-                    $('#' + tipInfoId).removeClass('info_normal').css({'display':'block'});
+                    $('#' + inputId).addClass('was-validated is-invalid').removeClass('is-valid');
+                    // $('#' + tipImgId).addClass('wl_select_icon22').css({'display':'inline-block'});
+                    $('#' + tipInfoId).addClass('invalid-feedback').addClass('valid-feedback').css({'display':'block'});
                 }
             },
             isFunc: function(funcName){
@@ -697,9 +692,10 @@
 	}
 
 	//提交注册
-	function check_register() {
+	function check_register(e) {
 
 	    //账户信息
+	    var mobilePhoneTrim = $.trim($('#mobilePhone').val());
 	    var userNameTrim = $.trim($('#userName').val());
 // 	    //企业信息
 // 	    var companyNameTrim = $.trim($('#J_companyName').val());
@@ -709,54 +705,53 @@
 // 	    var areaCodeTrim = $.trim($('#J_areaCode').val());
 // 	    var telephoneTrim = $.trim($('#J_telphone').val());
 // 	    var linkmanTrim = $.trim($('#J_linkman').val());
-	    var mobilePhoneTrim = $.trim($('#mobilePhone').val());
 	    //为空判断
-	    if (userNameTrim == ''
-// 	    		|| companyNameTrim == '' || emailTrim == '' || areaCodeTrim == ''
-// 	            || telephoneTrim == '' || linkmanTrim == ''
-	            || mobilePhoneTrim == '') {
+	    if (userNameTrim == '' || mobilePhoneTrim == '') {
+//	    		|| companyNameTrim == '' || emailTrim == '' || areaCodeTrim == ''
+//	            || telephoneTrim == '' || linkmanTrim == ''
 
 	        if (mobilePhoneTrim == "") {
-	            checkReg.tool.switchInputStyle('error','mobilePhone', 'J_tipImgMobile','J_tipInfoMobile');
-	            $('#J_tipInfoMobile').html(checkReg.lang_zh['3202']);
+	            checkReg.tool.switchInputStyle('error','mobilePhone', 'J_tipImgMobile','tipInfoMobilePhone');
+	            $('#tipInfoMobilePhone').html(checkReg.lang_zh['3202']);
 	        }
 	        if (userNameTrim == "") {
-	            checkReg.tool.switchInputStyle('error','userName', 'J_tipImgUserName','J_tipInfoUserName');
-	            $('#J_tipInfoUserName').html(checkReg.lang_zh['3102']);
+	            checkReg.tool.switchInputStyle('error','userName', 'J_tipImgUserName','tipInfoUserName');
+	            $('#tipInfoUserName').html(checkReg.lang_zh['3102']);
 	        }
 
-	        if (companyNameTrim == "") {
-	            checkReg.tool.switchInputStyle('error', 'J_companyName', 'J_tipImgCompanyName', 'J_tipInfoCompanyName');
-	            $('#J_tipInfoCompanyName').html(checkReg.lang_zh['3132']);
-	        }
-	        if (($province.is(':visible') && provinceId==0) || ($cityId.is(':visible') && cityId==0)
-	        		|| ($townId.is(':visible') && townId==0) || ($quarterId.is(':visible') && quarterId==0)) {
-	            checkReg.tool.switchInputStyle('error', '', 'J_tipImgAddr', 'J_tipInfoAddr');
-	            $('#J_tipInfoAddr').html(checkReg.lang_zh['3143']);
-	        }
-	        if (addrDetail=='') {
-	            checkReg.tool.switchInputStyle('error', 'addr_detail', 'J_tipImgAddr', 'J_tipInfoAddr');
-	            $('#J_tipInfoAddr').html(checkReg.lang_zh['3143']);
-	        }
-	        if (emailTrim == "") {
-	            checkReg.tool.switchInputStyle('error','J_email', 'J_tipImgEmail','J_tipInfoEmail');
-	            $('#J_tipInfoEmail').html(checkReg.lang_zh['3152']);
-	        }
-	        if (areaCodeTrim == "") {
-	            checkReg.tool.switchInputStyle('error','J_areaCode', 'J_tipImgCompanyTel','J_tipInfoAreaCode');
-	            $('#J_tipInfoAreaCode').html(checkReg.lang_zh['3162']);
-	        }
-	        if (telephoneTrim == "") {
-	            checkReg.tool.switchInputStyle('error','J_telphone', 'J_tipImgCompanyTel','J_tipInfoTelphone');
-	            $('#J_tipInfoTelphone').html(checkReg.lang_zh['3172']);
-	        }
-	        if (linkmanTrim == "") {
-	            checkReg.tool.switchInputStyle('error','J_linkman', 'J_tipImgLinkman','J_tipInfoLinkman');
-	            $('#J_tipInfoLinkman').html(checkReg.lang_zh['3192']);
-	        }
+// 	        if (companyNameTrim == "") {
+// 	            checkReg.tool.switchInputStyle('error', 'J_companyName', 'J_tipImgCompanyName', 'J_tipInfoCompanyName');
+// 	            $('#J_tipInfoCompanyName').html(checkReg.lang_zh['3132']);
+// 	        }
+// 	        if (($province.is(':visible') && provinceId==0) || ($cityId.is(':visible') && cityId==0)
+// 	        		|| ($townId.is(':visible') && townId==0) || ($quarterId.is(':visible') && quarterId==0)) {
+// 	            checkReg.tool.switchInputStyle('error', '', 'J_tipImgAddr', 'J_tipInfoAddr');
+// 	            $('#J_tipInfoAddr').html(checkReg.lang_zh['3143']);
+// 	        }
+// 	        if (addrDetail=='') {
+// 	            checkReg.tool.switchInputStyle('error', 'addr_detail', 'J_tipImgAddr', 'J_tipInfoAddr');
+// 	            $('#J_tipInfoAddr').html(checkReg.lang_zh['3143']);
+// 	        }
+// 	        if (emailTrim == "") {
+// 	            checkReg.tool.switchInputStyle('error','J_email', 'J_tipImgEmail','J_tipInfoEmail');
+// 	            $('#J_tipInfoEmail').html(checkReg.lang_zh['3152']);
+// 	        }
+// 	        if (areaCodeTrim == "") {
+// 	            checkReg.tool.switchInputStyle('error','J_areaCode', 'J_tipImgCompanyTel','J_tipInfoAreaCode');
+// 	            $('#J_tipInfoAreaCode').html(checkReg.lang_zh['3162']);
+// 	        }
+// 	        if (telephoneTrim == "") {
+// 	            checkReg.tool.switchInputStyle('error','J_telphone', 'J_tipImgCompanyTel','J_tipInfoTelphone');
+// 	            $('#J_tipInfoTelphone').html(checkReg.lang_zh['3172']);
+// 	        }
+// 	        if (linkmanTrim == "") {
+// 	            checkReg.tool.switchInputStyle('error','J_linkman', 'J_tipImgLinkman','J_tipInfoLinkman');
+// 	            $('#J_tipInfoLinkman').html(checkReg.lang_zh['3192']);
+// 	        }
 
 	        //防止重复提交
 	        submitBtnAvailability('enable');
+	        e.preventDefault();
 	        return false;
 	    }
 
@@ -766,35 +761,39 @@
 			// 	    		companyNameIsOk && emailIsOk && areaCodeIsOk
 			// 	            && telephoneIsOk && telExtensionIsOk && companyAddrIsOk && linkmanIsOk &&
 			mobilePhoneIsOk) {
-				jQuery
-						.ajax({
-							type : 'POST',
-							url : 'register_enterprise_handle.php',
-							data : jQuery('#registerForm').serialize(),
-							async : false,
-							cache : false,
-							success : function(errorCode) {
-								if (errorCode == '0') {
-									var returnUrl = $('#returnUrl').val();
-									window.location.href = "regmobileok.php?mobile_phone="
-											+ mobileTrim
-											+ "&email="
-											+ emailTrim
-											+ "&userName="
-											+ userNameTrim
-											+ "&returnurl="
-											+ returnUrl;
-								} else {
-									handlerError(errorCode);
-								}
-							},
-							complete : function() {
-								//防止重复提交
-								submitBtnAvailability('enable');
-							}
-						});
+			return true;
+// 				jQuery
+// 						.ajax({
+// 							type : 'POST',
+// 							url : 'register_enterprise_handle.php',
+// 							data : jQuery('#registerForm').serialize(),
+// 							async : false,
+// 							cache : false,
+// 							success : function(errorCode) {
+// 								if (errorCode == '0') {
+// 									var returnUrl = $('#returnUrl').val();
+// 									window.location.href = "regmobileok.php?mobile_phone="
+// 											+ mobileTrim
+// 											+ "&email="
+// 											+ emailTrim
+// 											+ "&userName="
+// 											+ userNameTrim
+// 											+ "&returnurl="
+// 											+ returnUrl;
+// 								} else {
+// 									handlerError(errorCode);
+// 								}
+// 							},
+// 							complete : function() {
+// 								//防止重复提交
+// 								submitBtnAvailability('enable');
+// 							}
+// 						});
+
 			} else {
+				e.preventDefault();
 				submitBtnAvailability('enable');
+				return false;
 			}
 		}
 		//通过浏览器回退按钮返回该页面时，不会清空之前已填写的内容，需要在加载页面时验证一下已填写的内容
@@ -829,9 +828,9 @@
 				break;
 			case "1": //用户名已存在
 				var userName = $('#userName').val();
-				checkReg.tool.switchInputStyle('error', 'J_userName',
-						'J_tipImgUserName', 'J_tipInfoUserName');
-				$('#J_tipInfoUserName').html(
+				checkReg.tool.switchInputStyle('error', 'userName',
+						'J_tipImgUserName', 'tipInfoUserName');
+				$('#tipInfoUserName').html(
 						checkReg.lang_zh['3103'].replace('{#userName#}',
 								userName));
 				break;
@@ -850,14 +849,14 @@
 			case "4": //手机号已存在
 				var mobile = $('#mobilePhone').val();
 				checkReg.tool.switchInputStyle('error', 'mobilePhone',
-						'J_tipImgMobile', 'J_tipInfoMobile');
-				$('#J_tipInfoMobile').html(
+						'J_tipImgMobile', 'tipInfoMobilePhone');
+				$('#tipInfoMobilePhone').html(
 						checkReg.lang_zh['3204'].replace('{#Email#}', mobile));
 				break;
 			case "5": //手机号为空
 				checkReg.tool.switchInputStyle('error', 'mobilePhone',
-						'J_tipImgMobile', 'J_tipInfoMobile');
-				$('#J_tipInfoMobile').html(checkReg.lang_zh['3202']);
+						'J_tipImgMobile', 'tipInfoMobilePhone');
+				$('#tipInfoMobilePhone').html(checkReg.lang_zh['3202']);
 				break;
 			case "6": //公司名为空
 				checkReg.tool.switchInputStyle('error', 'J_companyName',
@@ -975,11 +974,12 @@
 						}
 					});
 			//提交注册
-			$('#saveButton').bind("click", function() {
+// 			$('#saveButton').bind("click", function() {
+			$('form').submit(function(e) {
 				//防止重复提交
 				submitBtnAvailability('disable');
 				//由于在ie8以下的浏览器版本，防止重复提交按钮不明显，所以延时0.1s执行注册操作
-				setTimeout(check_register, 50);
+				setTimeout(check_register(e), 50);
 				//check_register();
 			});
 		});

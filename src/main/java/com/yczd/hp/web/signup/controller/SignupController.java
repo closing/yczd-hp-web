@@ -72,7 +72,7 @@ public class SignupController {
 			return "redirect:/signup/person";
 		}
 		User user = new User();
-		//BeanUtils.copyProperties(form, user);
+		user.setMobilePhone(form.getMobilePhone());
 		if ("company".equals(type)) {
 			user.setUserType("21");// 企业:21
 		} else if ("supplyer".equals(type)) {
