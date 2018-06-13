@@ -33,7 +33,7 @@ public class UserDao implements IUserDao {
 			+ ":telphone3,	:subscribe)";
 
 	private static final String DELETE_SQL = "delete from  user where id = :id";
-	private static final String COUNT_SQL = "select count(id) as count from user where id = :id";
+	private static final String CHECK_SQL = "select count(id) as count from user where email = :key or user_name= :key or mobilephone = :key";
 
 	//
 	// 插入SQL
@@ -78,9 +78,10 @@ public class UserDao implements IUserDao {
 	}
 
 	@Override
-	public int count(int id) {
-		Map<String, Integer> paramMap = new HashMap<>();
-		paramMap.put("id", id);
-		return jdbcTemplate.queryForObject(COUNT_SQL, paramMap, Integer.class);
+	public boolean check(String key) {
+		Map<String, String> paramMap = new HashMap<>();
+		paramMap.put("key", key);
+		return 0 == jdbcTemplate.queryForObject(CHECK_SQL, paramMap, Integer.class);
 	}
+
 }
