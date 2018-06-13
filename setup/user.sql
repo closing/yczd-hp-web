@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (  
   	`id` int(10) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户ID',  
   	`user_type` char(2) NOT NULL  COMMENT '用户类型 个人:10 商户:20 企业:21 服务站:30 配送员:40',
-  	`user_name` varchar(20) NOT NULL COMMENT '系统登陆用户名',
+  	`user_name` varchar(20) COMMENT '系统登陆用户名',
 	`mobilephone`  varchar(11) NOT NULL  COMMENT '手机号码',
 	`email` varchar(40)  COMMENT '邮箱',
 	`driving_license_type` varchar(2)  COMMENT '驾驶证类型',
