@@ -26,7 +26,7 @@ CREATE TABLE `user` (
 	`update_date` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP  ON UPDATE CURRENT_TIMESTAMP COMMENT '修改日期',
 	`update_user` varchar(20) NOT NULL DEFAULT 'advertising' COMMENT '修改用户',
   PRIMARY KEY (`id`),  
-  UNIQUE KEY `idx_name` (`name`),  
+  UNIQUE KEY `idx_user_name` (`user_name`),  
   UNIQUE KEY `idx_mobilephone` (`mobilephone`),
   UNIQUE KEY `idx_email` (`email`)   
 ) ENGINE=MyISAM AUTO_INCREMENT=1000000000 DEFAULT CHARSET=gbk COMMENT='用户信息收集表';  
