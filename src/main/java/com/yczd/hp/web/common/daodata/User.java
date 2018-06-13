@@ -4,7 +4,7 @@ import java.sql.Date;
 
 public class User {
 	private Integer id;
- 
+
 	private String userType;
 	private String userName;
 
@@ -187,7 +187,6 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
- 
+
 
 }
-
