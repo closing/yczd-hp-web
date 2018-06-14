@@ -41,49 +41,53 @@
 		<div class="row">
 			<div class="col-md-8 order-md-1">
 				<h4 class="mb-3">注册信息</h4>
-				<form method="POST" class="needs-validation" th:action="@{/signup}"  th:object="${user}" novalidate>
+				<form method="POST" class="needs-validation" th:action="@{/signup/company}"  th:object="${user}" >
 					<div class="mb-3">
 						<label for="mobile">手机号码</label> <input type="text"
-							class="form-control" th:field="*{mobilePhone}" placeholder="88888888888" required>
-						<div class="invalid-feedback">手机号可用于登录、找回密码、接收订单通知等服务</div>
+							class="form-control" th:field="*{mobilePhone}"  MaxLength="11"
+							placeholder="88888888888">
+						<div class="invalid-feedback" id="tipInfoMobilePhone"
+							style="z-index: 1"></div>
 					</div>
 					<div class="mb-3">
-						<label for="username">用户名</label> <input type="text"
-							class="form-control" th:field="*{userName}" placeholder="zhangsan" required>
-						<div class="invalid-feedback" style="width: 100%;">用户名可用于登录</div>
+						<label for="userName">用户名</label> <input type="text"
+							class="form-control" th:field="*{userName}"
+							placeholder="zhangsan">
+						<div class="invalid-feedback" id="tipInfoUserName"></div>
 
 					</div>
 					<div class="mb-3">
-						<label for="email">企业邮箱</label>
-						<input type="email" class="form-control" th:field="*{email}"
+						<label for="email">企业邮箱</label> <input type="text"
+							class="form-control" th:field="*{email}"
 							placeholder="you@example.com">
-						<div class="invalid-feedback">邮箱可用于登录、找回密码、接收订单通知等服务</div>
+						<div class="invalid-feedback" id="tipInfoEmail"></div>
 					</div>
 
 					<hr class="mb-4">
 					<div class="row">
 						<div class="col-md-4 mb-3">
 							<label for="companyName">公司名称</label>
-							<input type="text"class="form-control" th:field="*{companyName}" required>
-							<div class="invalid-feedback">请填写单位执照上得名称</div>
+							<input type="text"class="form-control" th:field="*{companyName}">
+							<div class="tipInfocompanyName"></div>
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-md-3 mb-3">
-							<label for="address1">公司地址</label>
-							<select class="custom-select d-block w-100" th:field="*{address1}">
+						<div class="col-md-4 mb-3">
+							<label for="address1">公司地址</label> <select
+								class="custom-select d-block w-100" th:field="*{address1}">
 								<option value="">----请选择----</option>
-								<option th:each="item:${areaList}" th:value="${item.code}" th:text="${item.name}"></option>
+								<option th:each="item:${areaList}" th:value="${item.code}"
+									th:text="${item.name}"></option>
 							</select>
-							<div class="invalid-feedback">Please select a valid country.</div>
+							<div class="invalid-feedback"></div>
 						</div>
-						<div class="col-md-3 mb-3">
-							<label for="address2"></label><select
-								class="custom-select d-block w-100"th:field="*{address2}">
+						<div class="col-md-4 mb-3">
+							<label for="address2"></label> <select
+								class="custom-select d-block w-100" th:field="*{address2}">
 								<option value="">----请选择----</option>
 							</select>
 						</div>
-						<div class="col-md-3 mb-3">
+						<div class="col-md-4 mb-3">
 							<label for="address3"></label> <select
 								class="custom-select d-block w-100" th:field="*{address3}">
 								<option value="">----请选择----</option>
@@ -92,9 +96,10 @@
 					</div>
 					<div class="row">
 						<div class="col-md-4 mb-3">
-							<label for="address4"></label>
-							<input type="text" class="form-control" th:field="*{address4}" placeholder="请填写小区街道等详细信息" >
-							<div class="invalid-feedback">请填写小区街道等详细信息</div>
+							<label for="address4"></label> <input type="text"
+								class="form-control" th:field="*{address4}"
+								placeholder="请填写地址详细信息">
+							<div class="invalid-feedback" id="tipInfoAddress4"></div>
 						</div>
 					</div>
 					<div class="row">
@@ -103,26 +108,30 @@
 							<input type="text" class="form-control" th:field="*{telphone1}"  placeholder="区号  "  MaxLength="4">
 							<input type="text" class="form-control" th:field="*{telphone2}"  placeholder="座机号"  MaxLength="8">
 							<input type="text" class="form-control" th:field="*{telphone3}"  placeholder="分机号"  MaxLength="8">
-							<div class="invalid-feedback">请填写单位执照上得名称</div>
+							<div class="invalid-feedback" id ="tipInfoTelphone">请填写单位执照上得名称</div>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-md-4 mb-3">
 							<label for="contact">联系人姓名</label> <input type="text"
-								class="form-control" th:field="*{contact}" required>
-							<div class="invalid-feedback">请填写单位执照上得名称</div>
+								class="form-control" th:field="*{contact}">
+							<div class="tipInfoContact">请填写单位执照上得名称</div>
 						</div>
 					</div>
-					<hr class="mb-4">
+						<hr class="mb-4">
 					<div class="custom-control custom-checkbox">
-						<input type="checkbox" class="custom-control-input"  name="subscribe"  value="true" checked>
-						<label class="custom-control-label" for="subscribe">订阅</label>
-						<div class="invalid-feedback">可以通过邮箱和手机接受各种通知信息</div>
+						<input type="checkbox" class="custom-control-input"
+							name="subscribe" value="true" checked> <label
+							class="custom-control-label" for="subscribe">订阅</label>
+						<div class="invalid-feedback" id="tipInfoSubscribe"></div>
 					</div>
 
 
-					<button class="btn btn-primary btn-lg btn-block" type="submit">注册</button>
+					<button class="btn btn-primary btn-lg btn-block" id="saveButton"
+						type="submit">注册</button>
+					<button class="btn btn-primary btn-lg btn-block disabled invisible"
+						id="saveButtonUnclick" type="submit">注册</button>
 				</form>
 			</div>
 		</div>
