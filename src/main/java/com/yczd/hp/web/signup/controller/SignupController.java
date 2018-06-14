@@ -72,7 +72,7 @@ public class SignupController {
 			return "redirect:/signup/person";
 		}
 		User user = new User();
-		user.setMobilePhone(form.getMobilePhone());
+		BeanUtils.copyProperties(form, user);
 		if ("company".equals(type)) {
 			user.setUserType("21");// 企业:21
 		} else if ("supplyer".equals(type)) {
@@ -84,10 +84,8 @@ public class SignupController {
 		} else {
 			user.setUserType("10"); // 个人:10
 		}
-		user.setUserName(StringUtils.isEmpty(form.getUserName()) ? null : form.getUserName());
 		user.setEmail(StringUtils.isEmpty(form.getEmail()) ? null : form.getEmail());
 		user.setName(StringUtils.isEmpty(form.getName()) ? null : form.getName());
-		user.setSex(StringUtils.isEmpty(form.getSex()) ? null : form.getSex());
 		user.setBirthday(StringUtils.isEmpty(form.getBirthday()) ? null : Date.valueOf(form.getBirthday()));
 		user.setAddress1(StringUtils.isEmpty(form.getAddress1()) ? null : Integer.valueOf(form.getAddress1()));
 		user.setAddress2(StringUtils.isEmpty(form.getAddress2()) ? null : Integer.valueOf(form.getAddress2()));
