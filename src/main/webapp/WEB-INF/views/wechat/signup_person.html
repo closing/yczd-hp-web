@@ -41,87 +41,99 @@
 		<div class="row">
 			<div class="col-md-8 order-md-1">
 				<h4 class="mb-3">注册信息</h4>
-				<form method="POST" th:action="@{/signup/person}"  th:object="${user}">
+				<form method="POST" th:action="@{/signup/person}"
+					th:object="${user}">
 					<div class="mb-3">
-						<label for="mobile">手机号码</label>
-							<input type="text" class="form-control" th:field="*{mobilePhone}" placeholder="88888888888">
-						<div class="invalid-feedback" id="tipInfoMobilePhone" style="z-index: 1"></div>
+						<label for="mobile">手机号码</label> <input type="text"
+							class="form-control" th:field="*{mobilePhone}" MaxLength="11"
+							placeholder="88888888888">
+						<div class="invalid-feedback" id="tipInfoMobilePhone"
+							style="z-index: 1"></div>
 					</div>
 					<div class="mb-3">
 						<label for="userName">用户名</label> <input type="text"
-							class="form-control" th:field="*{userName}" placeholder="zhangsan">
+							class="form-control" th:field="*{userName}"
+							placeholder="zhangsan">
 						<div class="invalid-feedback" id="tipInfoUserName"></div>
 
 					</div>
 					<div class="mb-3">
-						<label for="email">邮箱</label>
-						<input type="email" class="form-control" th:field="*{email}"
+						<label for="email">邮箱</label> <input type="text"
+							class="form-control" th:field="*{email}"
 							placeholder="you@example.com">
 						<div class="invalid-feedback" id="tipInfoEmail"></div>
 					</div>
 					<hr class="mb-4">
 					<div class="row">
 						<div class="col-md-4 mb-3">
-							<label for="name">姓名</label>
-							<input type="text"  class="form-control" th:field="*{name}" placeholder="例:张三" >
+							<label for="name">姓名</label> <input type="text"
+								class="form-control" th:field="*{name}" placeholder="例:张三">
 							<div class="invalid-feedback" id="tipInfoName"></div>
 						</div>
 						<div class="col-md-4 mb-3">
 							<label for="sex">性别</label>
 							<div class="custom-control custom-radio">
-								<input id="male" name="sex" type="radio" class="custom-control-input"  value="1" checked>
-								<label class="custom-control-label" for="male">男</label>
+								<input id="male" name="sex" type="radio"
+									class="custom-control-input" value="1" checked> <label
+									class="custom-control-label" for="male">男</label>
 							</div>
 							<div class="custom-control custom-radio">
-								<input id="female" name="sex" type="radio" class="custom-control-input"  value="0">
-								<label class="custom-control-label" for="female">女</label>
+								<input id="female" name="sex" type="radio"
+									class="custom-control-input" value="0"> <label
+									class="custom-control-label" for="female">女</label>
 							</div>
 						</div>
 						<div class="col-md-4 mb-3">
-							<label for="birthday">出生日期</label>
-							<input type="date" class="form-control" th:field="*{birthday}" placeholder="1982-01-01" >
+							<label for="birthday">出生日期</label> <input type="date"
+								class="form-control" th:field="*{birthday}"
+								placeholder="1982-01-01">
 							<div class="invalid-feedback" id="tipInfoBirthday">请填写出生日期</div>
 						</div>
 					</div>
 					<hr class="mb-4">
 					<div class="row">
 						<div class="col-md-4 mb-3">
-							<label for="address1">地址</label>
-							<select class="custom-select d-block w-100" th:field="*{address1}">
+							<label for="address1">地址</label> <select
+								class="custom-select d-block w-100" th:field="*{address1}">
 								<option value="">----请选择----</option>
-								<option th:each="item:${areaList}" th:value="${item.code}" th:text="${item.name}"></option>
+								<option th:each="item:${areaList}" th:value="${item.code}"
+									th:text="${item.name}"></option>
 							</select>
 							<div class="invalid-feedback"></div>
 						</div>
 						<div class="col-md-4 mb-3">
-							<label for="address2"></label>
-							<select class="custom-select d-block w-100"th:field="*{address2}">
+							<label for="address2"></label> <select
+								class="custom-select d-block w-100" th:field="*{address2}">
 								<option value="">----请选择----</option>
 							</select>
 						</div>
 						<div class="col-md-4 mb-3">
-							<label for="address3"></label>
-							<select class="custom-select d-block w-100" th:field="*{address3}">
+							<label for="address3"></label> <select
+								class="custom-select d-block w-100" th:field="*{address3}">
 								<option value="">----请选择----</option>
 							</select>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-4 mb-3">
-							<label for="address4"></label>
-							<input type="text" class="form-control" th:field="*{address4}" placeholder="请填写地址详细信息" >
+							<label for="address4"></label> <input type="text"
+								class="form-control" th:field="*{address4}"
+								placeholder="请填写地址详细信息">
 							<div class="invalid-feedback" id="tipInfoAddress4"></div>
 						</div>
 					</div>
 					<hr class="mb-4">
 					<div class="custom-control custom-checkbox">
-						<input type="checkbox" class="custom-control-input"  name="subscribe"  value="true" checked>
-						<label class="custom-control-label" for="subscribe">订阅</label>
-						<div class="invalid-feedback" id="tipInfoSubscribe">可以通过邮箱和手机接受各种通知信息</div>
+						<input type="checkbox" class="custom-control-input"
+							name="subscribe" value="true" checked> <label
+							class="custom-control-label" for="subscribe">订阅</label>
+						<div class="invalid-feedback" id="tipInfoSubscribe"></div>
 					</div>
 
-					<button class="btn btn-primary btn-lg btn-block" id="saveButton" type="submit">注册</button>
-					<button class="btn btn-primary btn-lg btn-block disabled hidden" id="saveButtonUnclick" type="submit">注册</button>
+					<button class="btn btn-primary btn-lg btn-block" id="saveButton"
+						type="submit">注册</button>
+					<button class="btn btn-primary btn-lg btn-block disabled invisible"
+						id="saveButtonUnclick" type="submit">注册</button>
 				</form>
 			</div>
 		</div>
@@ -142,667 +154,505 @@
 	<script th:src="@{/resources/js/plugins.js}"></script>
 	<script th:src="@{/resources/js/area.js}"></script>
 	<script>
+		var mobilePhoneIsOk = false;
+		var userNameIsOk = false;
+		var emailIsOk = false;
+		var nameIsOk = false;
+	 	var birthdayIsOk = false;
+	 	var address4IsOk = false;
+		var isUpdateMobilePhone = false; //验证手机框电话号码是否更新，包括用户名框中是邮箱情况
+	 	var oldMobilePhone = '';//记录上一次验证电话，用于判断电话是否变化
+		var oldUserName = '';
+		var oldEmail = '';
+	 	var checkReg = {
+		    emailReg: /^(([a-zA-Z0-9]+\w*((\.\w+)|(-\w+))*[\.-]?[a-zA-Z0-9]+)|([a-zA-Z0-9]))\@[a-zA-Z0-9]+((\.|-)[a-zA-Z0-9]+)*\.[a-zA-Z0-9]+$/, //匹配邮箱
+		    mobilePhoneReg: /^1[3,4,5,6,7,8,9][0-9]{9}$/,//匹配电话号码
+		    numberReg: /^[0-9]*$/,//匹配数字
+		    nameReg: /^(\w|[\u4E00-\u9FA5]|\s)*$/,//匹配 数字 字母 下划线 汉字 空白
+			upperCaseReg: /[A-Z]/g,
+		    userNameReg: /^(\w)*$/,//匹配 字母 下划线
+		    lang_zh: {
+		        //账户信息
+		        '3101' : '4-20个字符，可由小写字母、数字组成',
+		        '3102' : '用户名不能为空',
+		        '3103' : '该用户名已被使用，请更换其它用户名',
+		        '3104' : '最少4个字符，请输入您的用户名',
+		        '3105' : '最多只能为20个字符',
+		        '3106' : '用户名不能全由数字组成！',
+		        '3107' : '用户名不能有大写字母！',
+				'3108' : '用户名只能是数字，小写字母和下划线',
+				// 个人信息
+				'3110' : '请填写真实姓名',
+				'3111' : '请填写出生年月日',
+				'3112' : '出生日期不正确，请重新输入',
+				//企业及联系人信息
+		        '3131' : '请填写单位执照上得名称，最长为30个汉字（60个字符）',
+		        '3132' : '姓名不能为空',
+		        '3133' : '公司名称最长只能为30个汉字（60个字符）',
+		        '3134' : '该公司名称已被使用',
+		        '3141' : '请选择并填写地址',
+		        '3142' : '地址不能为空',
+		        '3143' : '请选择完整的公司地址',
+		        '3144' : '地址最长只能为50个汉字（100个字符）',
+		        '3151' : '请输入邮箱',
+		        '3152' : '邮箱不能为空',
+		        '3153' : '邮箱格式不正确，请重新输入',
+		        '3154' : '该邮箱已被注册，请更换其它邮箱',
+		        '3161' : '请输入区号',
+		        '3162' : '区号不能为空',
+		        '3163' : '只能3-4位纯数字',
+		        '3171' : '请输入座机号',
+		        '3172' : '座机号不能为空',
+		        '3173' : '只能7-8位纯数字',
+		        '3181' : '请输入分机号',
+		        '3183' : '只能是数字',
+		        '3191' : '2-30个字符，可有中文或英文组成',
+		        '3193' : '姓名只能为2-30个字符，不允许特殊符号',
+		        '3201' : '请输入手机号码',
+		        '3202' : '手机号不能为空',
+		        '3203' : '手机号格式不正确，请重新输入',
+		        '3204' : '此手机号已注册，请更换其它手机号',
+		        '3225' : '网络繁忙，请稍后重试',
+		        '3227' : '完成验证后，您可以用该手机登录和找回密码',
+		        '3228' : '验证码错误',
+		        '3229' : '您的手机号码获取验证码过于频繁，请2分钟后重试',
+		        '3231' : '您必须同意当当服务条款后，才能提交注册。',
+		        '3241' : '注册失败，请稍后重试。'
+		    },
+		    mobilePhone: {
+		        checkMobilePhoneFocus: function(){
+		            checkReg.tool.switchInputStyle('normal','mobilePhone', 'tipImgMobilePhone','tipInfoMobilePhone');
+		            $('#tipInfoMobilePhone').html(checkReg.lang_zh['3201']);
+		        },
+		        checkMobilePhone: function(){
+		            checkReg.tool.switchInputStyle('normal','mobilePhone', 'tipImgMobile','tipInfoMobilePhone');
+		            mobilePhoneIsOk = false;
+		            var mobilePhoneExist = false;
+		            var mobilePhone = $.trim($('#mobilePhone').val());
+		            if( oldMobilePhone != mobilePhone){
+		                isUpdateMobilePhone = true;
+		                oldMobilePhone = mobilePhone;
+		            }
+		            if (mobilePhone == '') {
+		                return false;
+		            }
+		            if (!checkReg.mobilePhoneReg.test(mobilePhone)) {
+		                checkReg.tool.switchInputStyle('error','mobilePhone', 'tipImgMobile','tipInfoMobilePhone');
+		                $('#tipInfoMobilePhone').html(checkReg.lang_zh['3203']);
+		                return false;
+		            }
+		            $.ajax({
+		            	type: 'POST',
+		                url: $("#contextPath").val() + '/commonapi/checkUser',
+		                dataType : "json",
+		                data: {
+		                	'key': mobilePhone
+		                },
+		                async: false,
+		                success: function (flg) {
+		                    if (flg == false) {
+		                        checkReg.tool.switchInputStyle('error','mobilePhone', 'tipImgMobile','tipInfoMobilePhone');
+		                        $('#tipInfoMobilePhone').html(checkReg.lang_zh['3204']);
+		                        mobilePhoneExist = true;
+		                        return false;
+		                    }
+		                }
+		            });
+		            if (mobilePhoneExist == true) {
+		                return false;
+		            }
+		            checkReg.tool.switchInputStyle('ok','mobilePhone', 'tipImgMobile','tipInfoMobilePhone');
+		            mobilePhoneIsOk = true;
+		            isUpdateMobilePhone = false;
+		            return true;
+		        }
+		    },
+		    userName: {
+		        checkFocus: function(){
+		            checkReg.tool.switchInputStyle('normal','userName', 'tipImgUserName','tipUserName');
+		            $('#tipInfoUserName').html(checkReg.lang_zh['3101']);
+		        },
+		        checkKeypress: function(){
+		        	var userName = $.trim($('#userName').val());
+		            if (userName == '') {
+		                return false;
+		            }
+		        	//格式正确性验证
+		            var verifyObj = checkReg.tool.VerifyCharLength(userName, 20);
+		            if(verifyObj && ('flag' in verifyObj) && verifyObj.flag===false){
+		                checkReg.tool.switchInputStyle('error','userName', 'tipImgUserName','tipInfoUserName');
+		                $('#tipInfoUserName').text(checkReg.lang_zh['3105']);
+		                $('#userName').val(userName.substr(0,verifyObj.charLen));
+		                return false;
+		            }else{
+		            	checkReg.tool.switchInputStyle('normal','userName', 'tipImgUserName','tipInfoUserName');
+		            }
+		        },
+		        checkUserName: function(){
+		        	userNameIsOk = false;
+		            var userNameExist = false;
+		            checkReg.tool.switchInputStyle('normal','userName', 'tipImgUserName','tipInfoUserName');
+		            var userName = $.trim($('#userName').val());
+		            if (userName == '') {
+		            	// 不可以空
+		            	return false;
+		            }
+		            //格式正确性验证
+		            var verifyObj = checkReg.userName.VerifyFormatUserName(userName);
+		            if(verifyObj && ('flag' in verifyObj) && verifyObj.flag===false){
+		                checkReg.tool.switchInputStyle('error','userName', 'tipImgUserName','tipInfoUserName');
+		                $('#tipInfoUserName').text(verifyObj.errorInfo);
+		                return false;
+		            }
+		            //唯一性验证
+		            $.ajax({
+		                type: 'POST',
+		                url: $("#contextPath").val() + '/commonapi/checkUser',
+		                dataType : "json",
+		                data: {
+		                	'key': userName
+		                },
+		                async: false,
+		                success : function(flg) {
+							if (flg == false) {
+		                        checkReg.tool.switchInputStyle('error','userName', 'tipImgUserName','tipInfoUserName');
+		                        $('#tipInfoUserName').html(checkReg.lang_zh['3103'].replace('{#userName#}', userName));
+		                        userNameExist = true;
+		                        return false;
+		                    }
+						},
+		                error: function(){
+		                	return false;
+		                }
+		            });
+		            if (userNameExist == true) {
+		                return false;
+		            }
+		            checkReg.tool.switchInputStyle('ok','userName', 'tipImgUserName','tipInfoUserName');
+		            userNameIsOk = true;
+		            return true;
+		        },
+		        VerifyFormatUserName: function(str){
+		            var errorInfo = '';
+		            var textFlag = false;
+		            var verifyObj = {"flag": textFlag, "errorInfo":""};
+		            if (str && str!=''){
+		                if (GetCharLength(str)<4){
+		                    errorInfo = checkReg.lang_zh['3104'];
+		                    textFlag = false;
+		                }else if(GetCharLength(str)>20){
+		                    errorInfo = checkReg.lang_zh['3105'];
+		                    textFlag = false;
+		                }
+		                else if(checkReg.numberReg.test(str)){
+		                    errorInfo = checkReg.lang_zh['3106'];
+		                    textFlag = false;
+		                }else if(checkReg.upperCaseReg.test(str)){
+		                    errorInfo = checkReg.lang_zh['3107'];
+		                    textFlag = false;
+		                }else{
+		                    if(str.match(checkReg.userNameReg)){
+		                        textFlag = true;
+		                    } else {
+		                        errorInfo = checkReg.lang_zh['3108'];
+		                        textFlag = false;
+		                    }
+		                }
+		                verifyObj = {"flag": textFlag, "errorInfo": errorInfo};
+		            }
+		            return verifyObj;
+		        }
+		    },
+		    email: {
+		        checkEmailFocus: function(){
+		            checkReg.tool.switchInputStyle('normal','email', 'tipImgEmail','tipInfoEmail');
+		            $('#tipInfoEmail').html(checkReg.lang_zh['3151']);
+		        },
+		        checkEmail: function(){
+		            emailIsOk = false;
+		            var emailExist = false;
+		            checkReg.tool.switchInputStyle('normal','email', 'tipImgEmail','tipInfoEmail');
+		            var email = $.trim($('#email').val());
+		            if (email == '') {
+		            	// 可以不填写
+		            	emailIsOk = true;
+		                return true;
+		            }
+		            if (email.length > 40 || !checkReg.emailReg.test(email)) {
+		                checkReg.tool.switchInputStyle('error','email', 'tipImgEmail','tipInfoEmail');
+		                $('#tipInfoEmail').html(checkReg.lang_zh['3153']);
+		                return false;
+		            }
+		            if (/[ ]/.test(email)) {
+		                checkReg.tool.switchInputStyle('error','email', 'tipImgEmail','tipInfoEmail');
+		                $('#tipInfoEmail').html(checkReg.lang_zh['3153']);
+		                return false;
+		            }
+		            $.ajax({
+			            type: 'POST',
+		                url: $("#contextPath").val() + '/commonapi/checkUser',
+		                dataType : "json",
+		                data: {
+		                	'key': email,
+		                },
+		                async: false,
+		                success: function (flg) {
+		                    if (flg == false) {
+		                        checkReg.tool.switchInputStyle('error','email', 'tipImgEmail','tipInfoEmail');
+		                        $('#tipInfoEmail').html(checkReg.lang_zh['3154']);
+		                        emailExist = true;
+		                        return ;
+		                    }
+		                }
+		            });
+		            if (emailExist == true) {
+		                return false;
+		            }
+		            checkReg.tool.switchInputStyle('ok','email', 'tipImgEmail','tipInfoEmail');
+		            emailIsOk = true;
+		            return true;
+		        }
+		    },
+		    name: {
+		        checkNameFocus: function(){
+		            checkReg.tool.switchInputStyle('normal','name', 'tipImgInfoName','tipInfoName');
+		            $('#tipInfoName').html(checkReg.lang_zh['3110']);
+		        },
+		        checkKeypress: function(){
+		        	var name = $.trim($('#name').val());
+		            if (name == '') {
+		                return true;
+		            }
+		        	//格式正确性验证
+		            var verifyObj = checkReg.tool.VerifyCharLength(name, 30);
+		            if(verifyObj && ('flag' in verifyObj) && verifyObj.flag===false){
+		            	checkReg.tool.switchInputStyle('error','name', 'tipImgInfoName','tipInfoName');
+		                $('#tipInfoName').text(checkReg.lang_zh['3193']);
+		                $('#name').val(name.substr(0,verifyObj.charLen));
+		                return false;
+		            }else{
+		            	checkReg.tool.switchInputStyle('normal','name', 'tipImgInfoName','tipInfoName');
+		            	return true;
+		            }
+		        },
+		        checkName: function(){
+		            nameIsOk = false;
+		            checkReg.tool.switchInputStyle('normal','name', 'tipImgInfoName','tipInfoName');
 
-	var mobilePhoneIsOk = false;
-	var userNameIsOk = false;
-	var oldMobilePhone = '';//记录上一次验证电话，用于判断电话是否变化
-	var oldUserName = '';
-	var isUpdateMobilePhone = false; //验证手机框电话号码是否更新，包括用户名框中是邮箱情况
+		            var name = $.trim($('#name').val());
+		            if (name == '') {
+		                return false;
+		            }
 
-	var emailIsOk = false;
-	var oldEmail = '';
+		            //格式正确性验证
+		            var len = GetCharLength(name);
+		            if (len<2 || len>30){
+		                checkReg.tool.switchInputStyle('error','name', 'tipImgInfoName','tipInfoName');
+		                $('#tipInfoName').html(checkReg.lang_zh['3193']);
+		                return false;
+		            }
+		            if (!checkReg.nameReg.test(name)) {
+		                checkReg.tool.switchInputStyle('error','name', 'tipImgInfoName','tipInfoName');
+		                $('#tipInfoName').html(checkReg.lang_zh['3193']);
+		                return false;
+		            }
+		            checkReg.tool.switchInputStyle('ok','name', 'tipImgInfoName','tipInfoName');
+		            nameIsOk = true;
+		            return true;
+		        }
+		    },
+		    birthday: {
+		    	checkBirthdayFocus: function(){
+		            checkReg.tool.switchInputStyle('normal', 'birthday', 'tipImgInfoBirthday', 'tipInfoBirthday');
+		            $('#tipInfoAddr').html(checkReg.lang_zh['3111']);
+		        },
+		        checkBirthday: function(){
+		        	birthdayIsOk = false;
+		            checkReg.tool.switchInputStyle('normal', 'birthday', 'tipImgInfoBirthday', 'tipInfoBirthday');
+		            var birthday = $.trim($('#birthday').val());
+		            if (birthday == '') {
+		            	birthdayIsOk = true;
+		                return true;
+		            }
 
-// 	var companyNameIsOk = false;
-// 	var areaCodeIsOk = false;
-// 	var telephoneIsOk = false;
-// 	var telExtensionIsOk = true; //允许为空
-// 	var companyAddrIsOk = false;
-// 	var linkmanIsOk = false;
-// 	var timeoutrun = 0; //倒计时计数器
-	var checkReg = {
-	    emailReg: /^(([a-zA-Z0-9]+\w*((\.\w+)|(-\w+))*[\.-]?[a-zA-Z0-9]+)|([a-zA-Z0-9]))\@[a-zA-Z0-9]+((\.|-)[a-zA-Z0-9]+)*\.[a-zA-Z0-9]+$/, //匹配邮箱
-	    mobilePhoneReg: /^1[3,4,5,6,7,8,9][0-9]{9}$/,//匹配电话号码
-	    numberReg: /^[0-9]*$/,//匹配数字
-	    linkmanReg: /^(\w|[\u4E00-\u9FA5]|\s)*$/,//匹配匹配 数字 字母下 划线 汉字 空白
-		upperCaseReg: /[A-Z]/g,
-	    companNameReg: /^(\w|[\u4E00-\u9FA5])*$/,//匹配 数字 字母下 划线 汉字
-	    userNameReg: /^(\w)*$/,//匹配 字母 下划线
-	    lang_zh: {
-	        //账户信息
-	        '3101' : '4-20个字符，可由小写字母、中文、数字组成',
-	        '3102' : '用户名不能为空',
-	        '3103' : '该用户名已被使用，请更换其它用户名',
-	        '3104' : '最少4个字符，请输入您的用户名',
-	        '3105' : '最多只能为20个字符',
-	        '3106' : '用户名不能全由数字组成！',
-	        '3107' : '用户名不能有大写字母！',
-			'3108' : '用户名只能是数字，小写字母和下划线',
-			// 个人信息
-			'3110' : '请填写真实姓名',
-			'3111' : '请填写出生年月日',
-			//企业及联系人信息
-	        '3131' : '请填写单位执照上得名称，最长为30个汉字（60个字符）',
-	        '3132' : '公司名称不能为空',
-	        '3133' : '公司名称最长只能为30个汉字（60个字符）',
-	        '3134' : '该公司名称已被使用',
-	        '3141' : '请选择并填写公司地址',
-	        '3142' : '公司地址不能为空',
-	        '3143' : '请选择完整的公司地址',
-	        '3144' : '公司地址最长只能为64个汉字（128个字符）',
-	        '3151' : '请输入邮箱，建议填写企业邮箱',
-	        '3152' : '邮箱不能为空',
-	        '3153' : '邮箱格式不正确，请重新输入',
-	        '3154' : '该邮箱已被注册，请更换其它邮箱',
-	        '3161' : '请输入区号',
-	        '3162' : '区号不能为空',
-	        '3163' : '只能3-4位纯数字',
-	        '3171' : '请输入座机号',
-	        '3172' : '座机号不能为空',
-	        '3173' : '只能7-8位纯数字',
-	        '3181' : '请输入分机号',
-	        '3183' : '只能是数字',
-	        '3191' : '2-32个字符，可有中文或英文组成',
-	        '3192' : '联系人姓名不能为空',
-	        '3193' : '联系人姓名只能为2-32个字符，不允许特殊符号',
-	        '3201' : '请输入手机号码',
-	        '3202' : '手机号不能为空',
-	        '3203' : '手机号格式不正确，请重新输入',
-	        '3204' : '此手机号已注册，请更换其它手机号',
-	        '3225' : '网络繁忙，请稍后重试',
-	        '3227' : '完成验证后，您可以用该手机登录和找回密码',
-	        '3228' : '验证码错误',
-	        '3229' : '您的手机号码获取验证码过于频繁，请2分钟后重试',
-	        '3231' : '您必须同意当当服务条款后，才能提交注册。',
-	        '3241' : '注册失败，请稍后重试。'
-	    },
-	    mobilePhone: {
-	        checkMobilePhoneFocus: function(){
-	            checkReg.tool.switchInputStyle('normal','mobilePhone', 'tipImgMobilePhone','tipInfoMobilePhone');
-	            $('#tipInfoMobilePhone').html(checkReg.lang_zh['3201']);
-	        },
-	        checkMobilePhone: function(){
-	            checkReg.tool.switchInputStyle('normal','mobilePhone', 'J_tipImgMobile','tipInfoMobilePhone');
-	            mobilePhoneIsOk = false;
-	            var mobilePhoneExist = false;
-	            var mobilePhone = $.trim($('#mobilePhone').val());
-	            if( oldMobilePhone != mobilePhone){
-	                isUpdateMobilePhone = true;
-	                oldMobilePhone = mobilePhone;
-	            }
-	            if (mobilePhone == '') {
-	                return false;
-	            }
-	            if (!checkReg.mobilePhoneReg.test(mobilePhone)) {
-	                checkReg.tool.switchInputStyle('error','mobilePhone', 'J_tipImgMobile','tipInfoMobilePhone');
-	                $('#tipInfoMobilePhone').html(checkReg.lang_zh['3203']);
-	                return false;
-	            }
-	            $.ajax({
-	            	type: 'POST',
-	                url: $("#contextPath").val() + '/commonapi/checkUser',
-	                dataType : "json",
-	                data: {
-	                	'key': mobilePhone,
-	                },
-	                success: function (flg) {
-	                    if (flg == false) {
-	                        checkReg.tool.switchInputStyle('error','mobilePhone', 'J_tipImgMobile','tipInfoMobilePhone');
-	                        $('#tipInfoMobilePhone').html(checkReg.lang_zh['3204']);
-	                        mobilePhoneExist = true;
-	                        return false;
-	                    }
+		            //格式正确性验证
+		            if (false == (new Date(birthday).getDate()==birthday.substring(birthday.length-2))) {
+		            	// 日期格式不正确
+		            	checkReg.tool.switchInputStyle('error','birthday', 'tipImgInfoBirthday','tipInfoBirthday');
+		            	$('#tipInfoBirthday').html(checkReg.lang_zh['3112']);
+			            return false;
+		            }
+
+	            	// 未来日期不可以
+	            	var today = new Date();
+	            	var birthdayDate = new Date(birthday);
+		            if (today.getFullYear() <= birthdayDate.getFullYear()) {
+		            	// 只判断年
+		            	checkReg.tool.switchInputStyle('error','birthday', 'tipImgInfoBirthday','tipInfoBirthday');
+		                $('#tipInfoBirthday').html(checkReg.lang_zh['3112']);
+		                return false;
+		            }
+		            checkReg.tool.switchInputStyle('ok','birthday', 'tipImgInfoBirthday','tipInfoBirthday');
+		            birthdayIsOk = true;
+		            return true;
+		        }
+
+		    },
+		    address: {
+		        checkAddressFocus: function(){
+		            checkReg.tool.switchInputStyle('normal', 'address4', 'tipImgAddress4', 'tipInfoAddress4');
+		            $('#tipInfoAddress4').html(checkReg.lang_zh['3141']);
+		        },
+		        checkKeypress: function(){
+		        	var address4 = $.trim($('#address4').val());
+		            if (address4 == '') {
+		                return true;
+		            }
+		        	//格式正确性验证
+		            var verifyObj = checkReg.tool.VerifyCharLength(address4, 100);
+		            if(verifyObj && ('flag' in verifyObj) && verifyObj.flag===false){
+		            	checkReg.tool.switchInputStyle('error', 'address4', 'tipImgAddress4', 'tipInfoAddress4');
+		                $('#tipInfoAddress4').text(checkReg.lang_zh['3144']);
+		                $('#address4').val(address4.substr(0,verifyObj.charLen));
+		                return false;
+		            }else{
+		            	checkReg.tool.switchInputStyle('normal', 'address4', 'tipImgAddress4', 'tipInfoAddress4');
+		            }
+		        },
+		        checkAddress: function(){
+		        	address4IsOk = false;
+		            checkReg.tool.switchInputStyle('normal', 'address4', 'tipImgAddress4', 'tipInfoAddress4');
+		            var $tipInfoAddr = $('#tipInfoAddr');
+		            var address4 = $('#address4').val();
+		            if (address4 == ''){
+		                //$tipInfoAddr.html(checkReg.lang_zh['3143']);
+		                address4IsOk = true;
+		                return true;
+		            }
+		            //格式正确性验证
+		            var len = GetCharLength(address4);
+		            if (len>100){
+		                checkReg.tool.switchInputStyle('error','address4', 'tipImgAddress4','tipInfoAddress4');
+		                $('#tipInfoAddress4').html(checkReg.lang_zh['3144']);
+		                return false;
+		            }
+		            if (!checkReg.nameReg.test(address4)) {
+		                checkReg.tool.switchInputStyle('error','address4', 'tipImgAddress4','tipInfoAddress4');
+		                $('#tipInfoAddress4').html(checkReg.lang_zh['3144']);
+		                return false;
+		            }
+		            address4IsOk = true;
+		            checkReg.tool.switchInputStyle('ok', 'address4', 'tipImgAddress4', 'tipInfoAddress4');
+		            return true;
+		        }
+		    },
+		    tool:{
+	            //将单元格恢复到最初样式
+	            switchInputStyle: function(showType, inputId, tipImgId, tipInfoId){
+	                if(showType == 'normal') {
+	                    $('#' + inputId).removeClass('was-validated is-invalid is-valid');
+	                    // $('#' + tipImgId).hide();
+	                    $('#' + tipInfoId).removeClass('invalid-feedback').addClass('valid-feedback').html('').css({'display':'block'});
+	                }else if(showType == 'ok') {
+	                    $('#' + inputId).addClass('was-validated is-valid').removeClass('is-invalid');
+	                    // $('#' + tipImgId).removeClass('wl_select_icon22').css({'display':'inline-block'});
+	                    $('#' + tipInfoId).removeClass('invalid-feedback').addClass('valid-feedback').css({'display':'block'});
+	                } else if(showType == 'error') {
+	                    $('#' + inputId).addClass('was-validated is-invalid').removeClass('is-valid');
+	                    // $('#' + tipImgId).addClass('wl_select_icon22').css({'display':'inline-block'});
+	                    $('#' + tipInfoId).addClass('invalid-feedback').addClass('valid-feedback').css({'display':'block'});
 	                }
-	            });
-	            if (mobilePhoneExist == true) {
-	                return false;
-	            }
-	            checkReg.tool.switchInputStyle('ok','mobilePhone', 'J_tipImgMobile','tipInfoMobilePhone');
-	            mobilePhoneIsOk = true;
-	            isUpdateMobilePhone = false;
-	            return true;
-	        }
-	    },
-	    userName: {
-	        checkFocus: function(){
-	            checkReg.tool.switchInputStyle('normal','userName', 'J_tipImgUserName','tipUserName');
-	            $('#tipInfoUserName').html(checkReg.lang_zh['3101']);
-	        },
-	        checkKeypress: function(){
-	        	var userName = $.trim($('#userName').val());
-	            if (userName == '') {
-	                return false;
-	            }
-	        	//格式正确性验证
-	            var verifyObj = checkReg.tool.VerifyCharLength(userName, 20);
-	            if(verifyObj && ('flag' in verifyObj) && verifyObj.flag===false){
-	                checkReg.tool.switchInputStyle('error','userName', 'J_tipImgUserName','tipInfoUserName');
-	                $('#tipInfoUserName').text(checkReg.lang_zh['3105']);
-	                $('#userName').val(userName.substr(0,verifyObj.charLen));
-	                return false;
-	            }else{
-	            	checkReg.tool.switchInputStyle('normal','userName', 'J_tipImgUserName','tipInfoUserName');
-	            }
-	        },
-	        checkUserName: function(){
-	        	userNameIsOk = false;
-	            var userNameExist = false;
-	            checkReg.tool.switchInputStyle('normal','userName', 'J_tipImgUserName','tipInfoUserName');
-
-	            var userName = $.trim($('#userName').val());
-	            if (userName == '') {
-	            	// 不可以空,可以稍后设置
-	            	userNameIsOk = false;
-	                return false;
-	            }
-
-	            //格式正确性验证
-	            var verifyObj = checkReg.userName.VerifyFormatUserName(userName);
-	            if(verifyObj && ('flag' in verifyObj) && verifyObj.flag===false){
-	                checkReg.tool.switchInputStyle('error','userName', 'J_tipImgUserName','tipInfoUserName');
-	                $('#tipInfoUserName').text(verifyObj.errorInfo);
-	                return false;
-	            }
-	            //唯一性验证
-	            $.ajax({
-	                type: 'POST',
-	                url: $("#contextPath").val() + '/commonapi/checkUser',
-	                dataType : "json",
-	                data: {
-	                	'key': userName,
-	                },
-	                success : function(flg) {
-						if (flg == false) {
-	                        checkReg.tool.switchInputStyle('error','userName', 'J_tipImgUserName','tipInfoUserName');
-	                        $('#tipInfoUserName').html(checkReg.lang_zh['3103'].replace('{#userName#}', userName));
-	                        userNameExist = true;
-	                        return false;
-	                    }
-					},
-	                error: function(){
-	                	return false;
-	                }
-	            });
-	            if (userNameExist == true) {
-	                return false;
-	            }
-	            checkReg.tool.switchInputStyle('ok','userName', 'J_tipImgUserName','tipInfoUserName');
-	            userNameIsOk = true;
-	            return true;
-	        },
-	        VerifyFormatUserName: function(str){
-	            var errorInfo = '';
-	            var textFlag = false;
-	            var verifyObj = {"flag": textFlag, "errorInfo":""};
-
-	            if (str && str!=''){
-	                if (GetCharLength(str)<4){
-	                    errorInfo = checkReg.lang_zh['3104'];
-	                    textFlag = false;
-	                }else if(GetCharLength(str)>20){
-	                    errorInfo = checkReg.lang_zh['3105'];
-	                    textFlag = false;
-	                }
-	                else if(checkReg.numberReg.test(str)){
-	                    errorInfo = checkReg.lang_zh['3106'];
-	                    textFlag = false;
-	                }else if(checkReg.upperCaseReg.test(str)){
-	                    errorInfo = checkReg.lang_zh['3107'];
-	                    textFlag = false;
-	                }else{
-	                    if(str.match(checkReg.userNameReg)){
-	                        textFlag = true;
-	                    } else {
-	                        errorInfo = checkReg.lang_zh['3108'];
-	                        textFlag = false;
-	                    }
-	                }
-	                verifyObj = {"flag": textFlag, "errorInfo": errorInfo};
-	            }
-	            return verifyObj;
-	        }
-	    },
-// 	    companyName: {
-// 	        checkCompanyNameFocus: function() {
-// 	            checkReg.tool.switchInputStyle('normal', 'J_companyName', 'J_tipImgCompanyName', 'J_tipInfoCompanyName');
-// 	            $('#J_tipInfoCompanyName').html(checkReg.lang_zh['3131']);
-// 	        },
-// 	        checkKeypress: function(){
-// 	        	var companyName = $.trim($('#J_companyName').val());
-// 	            if (companyName == '') {
-// 	                return false;
-// 	            }
-// 	        	//格式正确性验证
-// 	            var verifyObj = checkReg.tool.VerifyCharLength(companyName, 60);
-// 	            if(verifyObj && ('flag' in verifyObj) && verifyObj.flag===false){
-// 	            	checkReg.tool.switchInputStyle('error', 'J_companyName', 'J_tipImgCompanyName', 'J_tipInfoCompanyName');
-// 	                $('#J_tipInfoCompanyName').text(checkReg.lang_zh['3133']);
-// 	                $('#J_companyName').val(companyName.substr(0,verifyObj.charLen));
-// 	                return false;
-// 	            }else{
-// 	            	checkReg.tool.switchInputStyle('normal', 'J_companyName', 'J_tipImgCompanyName', 'J_tipInfoCompanyName');
-// 	            }
-// 	        },
-// 	        checkCompanyName: function(){
-// 	            companyNameIsOk = false;
-// 	            var companyNameExist = false;
-// 	            checkReg.tool.switchInputStyle('normal', 'J_companyName', 'J_tipImgCompanyName', 'J_tipInfoCompanyName');
-
-// 	            var companyName = $.trim($('#J_companyName').val());
-// 	            if (companyName == '') {
-// 	                return false;
-// 	            }
-
-// 	            //格式正确性验证
-// 	            var verifyObj = checkReg.companyName.VerifyFormatCompanyName(companyName);
-// 	            if(verifyObj && ('flag' in verifyObj) && verifyObj.flag===false){
-// 	                checkReg.tool.switchInputStyle('error', 'J_companyName', 'J_tipImgCompanyName', 'J_tipInfoCompanyName');
-// 	                $('#J_tipInfoCompanyName').text(verifyObj.errorInfo);
-// 	                return false;
-// 	            }
-
-// 	            //唯一性验证
-// 	            $.ajax({
-// 	                type: 'POST',
-// 	                url: 'p/enterprise_checker.php?',
-// 	                data: 'enterprise_name=' + companyName,
-// 	                async: false,
-// 	                cache: false,
-// 	                success: function (flg) {
-// 	                    if (flg == "true") {
-// 	                    	checkReg.tool.switchInputStyle('error', 'J_companyName', 'J_tipImgCompanyName', 'J_tipInfoCompanyName');
-// 	                        $('#J_tipInfoCompanyName').html(checkReg.lang_zh['3134']);
-// 	                        companyNameExist = true;
-// 	                        return false;
-// 	                    }
-// 	                }
-// 	            });
-
-// 	            if (companyNameExist == true) {
-// 	                return false;
-// 	            }
-// 	            checkReg.tool.switchInputStyle('ok', 'J_companyName', 'J_tipImgCompanyName', 'J_tipInfoCompanyName');
-// 	            companyNameIsOk = true;
-// 	            return true;
-// 	        },
-// 	        VerifyFormatCompanyName: function(str){
-// 	            var errorInfo = '';
-// 	            var textFlag = false;
-// 	            var verifyObj = {"flag": textFlag, "errorInfo":""};
-
-// 	            if (str && str!=''){
-// 	                if (GetCharLength(str)>60){
-// 	                    errorInfo = checkReg.lang_zh['3133'];
-// 	                    textFlag = false;
-// 	                }else{
-// 	                    textFlag = true;
-// 	                }
-// 	                verifyObj = {"flag": textFlag, "errorInfo": errorInfo};
-// 	            }
-// 	            return verifyObj;
-// 	        }//end VerifyFormatCompanyName
-// 	    },
-// 	    companyEmail: {
-// 	        checkEmailFocus: function(){
-// 	            checkReg.tool.switchInputStyle('normal','J_email', 'J_tipImgEmail','J_tipInfoEmail');
-// 	            $('#J_tipInfoEmail').html(checkReg.lang_zh['3151']);
-// 	        },
-// 	        checkEmail: function(){
-// 	            emailIsOk = false;
-// 	            var emailExist = false;
-// 	            checkReg.tool.switchInputStyle('normal','J_email', 'J_tipImgEmail','J_tipInfoEmail');
-
-// 	            var email = $.trim($('#J_email').val());
-// 	            if (email == '') {
-// 	                return false;
-// 	            }
-
-// 	            if (email.length > 40 || !checkReg.emailReg.test(email)) {
-// 	                checkReg.tool.switchInputStyle('error','J_email', 'J_tipImgEmail','J_tipInfoEmail');
-// 	                $('#J_tipInfoEmail').html(checkReg.lang_zh['3153']);
-// 	                return false;
-// 	            }
-// 	            if (/[ ]/.test(email)) {
-// 	                checkReg.tool.switchInputStyle('error','J_email', 'J_tipImgEmail','J_tipInfoEmail');
-// 	                $('#J_tipInfoEmail').html(checkReg.lang_zh['3153']);
-// 	                return false;
-// 	            }
-// 	            $.ajax({
-// 	                type: 'POST',
-// 	                url: 'p/email_checker.php',
-// 	                data: 'email=' + email,
-// 	                async: false,
-// 	                cache: false,
-// 	                success: function (flg) {
-// 	                    if (flg == "true") {
-// 	                        checkReg.tool.switchInputStyle('error','J_email', 'J_tipImgEmail','J_tipInfoEmail');
-// 	                        $('#J_tipInfoEmail').html(checkReg.lang_zh['3154'].replace('{#Email#}', email));
-// 	                        emailExist = true;
-// 	                        return ;
-// 	                    }
-// 	                }
-// 	            });
-// 	            if (emailExist == true) {
-// 	                return false;
-// 	            }
-// 	            checkReg.tool.switchInputStyle('ok','J_email', 'J_tipImgEmail','J_tipInfoEmail');
-// 	            emailIsOk = true;
-// 	            return true;
-// 	        }
-// 	    },
-// 	    companyTel: {
-// 	        areaCode: {
-// 	            checkAreaCodeFocus: function(){
-// 	                checkReg.tool.switchInputStyle('normal','J_areaCode', 'J_tipImgCompanyTel','J_tipInfoAreaCode');
-// 	                $('#J_tipInfoAreaCode').html(checkReg.lang_zh['3161']);
-// 	            },
-// 	            checkAreaCode: function(){
-// 	                areaCodeIsOk = false;
-// 	                checkReg.tool.switchInputStyle('normal','J_areaCode', 'J_tipImgCompanyTel','J_tipInfoAreaCode');
-
-// 	                var areaCode = $.trim($('#J_areaCode').val());
-// 	                if (areaCode == '') {
-// 	                    return false;
-// 	                }
-
-// 	                var len = areaCode.length;
-// 	                if (!checkReg.numberReg.test(areaCode) ||(len!=3 && len!=4)) {
-// 	                    checkReg.tool.switchInputStyle('error','J_areaCode', 'J_tipImgCompanyTel','J_tipInfoAreaCode');
-// 	                    $('#J_tipInfoAreaCode').html(checkReg.lang_zh['3163']);
-// 	                    return false;
-// 	                }
-// 	                areaCodeIsOk = true;
-// 	                if(areaCodeIsOk && telephoneIsOk && telExtensionIsOk){
-// 	                    checkReg.tool.switchInputStyle('ok','J_areaCode', 'J_tipImgCompanyTel','J_tipInfoAreaCode');
-// 	                }
-// 	                return true;
-// 	            }
-// 	        },
-// 	        telephone: {
-// 	            checkTelephoneFocus: function(){
-// 	                checkReg.tool.switchInputStyle('normal','J_telphone', 'J_tipImgCompanyTel','J_tipInfoTelphone');
-// 	                $('#J_tipInfoTelphone').html(checkReg.lang_zh['3171']);
-// 	            },
-// 	            checkTelephone: function(){
-// 	                telephoneIsOk = false;
-// 	                checkReg.tool.switchInputStyle('normal','J_telphone', 'J_tipImgCompanyTel','J_tipInfoTelphone');
-
-// 	                var telephone = $.trim($('#J_telphone').val());
-// 	                if (telephone == '') {
-// 	                    return false;
-// 	                }
-// 	                var len = telephone.length;
-// 	                if (!checkReg.numberReg.test(telephone) || (len!=7 && len!=8)) {
-// 	                    checkReg.tool.switchInputStyle('error','J_telphone', 'J_tipImgCompanyTel','J_tipInfoTelphone');
-// 	                    $('#J_tipInfoTelphone').html(checkReg.lang_zh['3173']);
-// 	                    return false;
-// 	                }
-// 	                telephoneIsOk = true;
-// 	                if(areaCodeIsOk && telephoneIsOk && telExtensionIsOk){
-// 	                    checkReg.tool.switchInputStyle('ok','J_telphone', 'J_tipImgCompanyTel','J_tipInfoTelphone');
-// 	                }
-// 	                return true;
-// 	            }
-// 	        },
-// 	        telExtension: {
-// 	            checkTelExtensionFocus: function(){
-// 	                checkReg.tool.switchInputStyle('normal','J_telExtension', 'J_tipImgCompanyTel','J_tipInfoTelExtension');
-// 	                $('#J_tipInfoTelExtension').html(checkReg.lang_zh['3181']);
-// 	            },
-// 	            checkTelExtension: function(){
-// 	                telExtensionIsOk = true;
-// 	                checkReg.tool.switchInputStyle('normal','J_telExtension', 'J_tipImgCompanyTel','J_tipInfoTelExtension');
-
-// 	                var telExtension = $.trim($('#J_telExtension').val());
-// 	                if (telExtension == '') {
-// 	                    telExtensionIsOk = true;
-// 	                }else if(!checkReg.numberReg.test(telExtension)) {
-// 	                    checkReg.tool.switchInputStyle('error','J_telExtension', 'J_tipImgCompanyTel','J_tipInfoTelExtension');
-// 	                    $('#J_tipInfoTelExtension').html(checkReg.lang_zh['3183']);
-// 	                    telExtensionIsOk = false;
-// 	                    return false;
-// 	                }
-// 	                if(areaCodeIsOk && telephoneIsOk && telExtensionIsOk){
-// 	                    checkReg.tool.switchInputStyle('ok','J_telphone', 'J_tipImgCompanyTel','J_tipInfoTelphone');
-// 	                }
-// 	                return true;
-// 	            }
-// 	        }
-// 	    },
-// 	    companyLinkman: {
-// 	        checkLinkmanFocus: function(){
-// 	            checkReg.tool.switchInputStyle('normal','J_linkman', 'J_tipImgLinkman','J_tipInfoLinkman');
-// 	            $('#J_tipInfoLinkman').html(checkReg.lang_zh['3191']);
-// 	        },
-// 	        checkKeypress: function(){
-// 	        	var linkman = $.trim($('#J_linkman').val());
-// 	            if (linkman == '') {
-// 	                return false;
-// 	            }
-// 	        	//格式正确性验证
-// 	            var verifyObj = checkReg.tool.VerifyCharLength(linkman, 32);
-// 	            if(verifyObj && ('flag' in verifyObj) && verifyObj.flag===false){
-// 	            	checkReg.tool.switchInputStyle('error','J_linkman', 'J_tipImgLinkman','J_tipInfoLinkman');
-// 	                $('#J_tipInfoLinkman').text(checkReg.lang_zh['3193']);
-// 	                $('#J_linkman').val(linkman.substr(0,verifyObj.charLen));
-// 	                return false;
-// 	            }else{
-// 	            	checkReg.tool.switchInputStyle('normal','J_linkman', 'J_tipImgLinkman','J_tipInfoLinkman');
-// 	            }
-// 	        },
-// 	        checkLinkman: function(){
-// 	            linkmanIsOk = false;
-// 	            checkReg.tool.switchInputStyle('normal','J_linkman', 'J_tipImgLinkman','J_tipInfoLinkman');
-
-// 	            var linkman = $.trim($('#J_linkman').val());
-// 	            if (linkman == '') {
-// 	                return false;
-// 	            }
-
-// 	            //格式正确性验证
-// 	            var len = GetCharLength(linkman);
-// 	            if (len<2 || len>32){
-// 	                checkReg.tool.switchInputStyle('error','J_linkman', 'J_tipImgLinkman','J_tipInfoLinkman');
-// 	                $('#J_tipInfoLinkman').html(checkReg.lang_zh['3193']);
-// 	                return false;
-// 	            }
-// 	            if (!checkReg.linkmanReg.test(linkman)) {
-// 	                checkReg.tool.switchInputStyle('error','J_linkman', 'J_tipImgLinkman','J_tipInfoLinkman');
-// 	                $('#J_tipInfoLinkman').html(checkReg.lang_zh['3193']);
-// 	                return false;
-// 	            }
-// 	            checkReg.tool.switchInputStyle('ok','J_linkman', 'J_tipImgLinkman','J_tipInfoLinkman');
-// 	            linkmanIsOk = true;
-// 	            return true;
-// 	        }
-// 	    },
-	    tool:{
-            //将单元格恢复到最初样式
-            switchInputStyle: function(showType, inputId, tipImgId, tipInfoId){
-                if(showType == 'normal') {
-                    $('#' + inputId).removeClass('was-validated is-invalid is-valid');
-                    // $('#' + tipImgId).hide();
-                    $('#' + tipInfoId).removeClass('invalid-feedback').addClass('valid-feedback').html('').css({'display':'block'});
-                }else if(showType == 'ok') {
-                    $('#' + inputId).addClass('was-validated is-valid').removeClass('is-invalid');
-                    // $('#' + tipImgId).removeClass('wl_select_icon22').css({'display':'inline-block'});
-                    $('#' + tipInfoId).removeClass('invalid-feedback').addClass('valid-feedback').css({'display':'block'});
-                } else if(showType == 'error') {
-                    $('#' + inputId).addClass('was-validated is-invalid').removeClass('is-valid');
-                    // $('#' + tipImgId).addClass('wl_select_icon22').css({'display':'inline-block'});
-                    $('#' + tipInfoId).addClass('invalid-feedback').addClass('valid-feedback').css({'display':'block'});
-                }
-            },
-            isFunc: function(funcName){
-                return typeof funcName == 'function';
-            },
-            VerifyCharLength: function(str, maxLen){
-	            var newCharLen = maxLen;
-	            var textFlag = true;
-	            var verifyObj = {"flag": textFlag, "charLen": newCharLen};
-
-	            if (str && str!=''){
-	                if(GetCharLength(str)>maxLen){
-	                	var charLen = str.length;
-	                    textFlag = false;
-	                    var l = 0;
-	                    for(var i=0;i<charLen; i++){
-	                    	l += GetCharLength(str[i]);
-	                    	if( l==maxLen ){
-	                    		newCharLen = (i+1);
-	                    		break;
-	                    	}else if(l>maxLen){
-	                    		newCharLen = i;
-	                    		break;
-	                    	}
-	                    }
-	                }
-	                verifyObj = {"flag": textFlag, "charLen":newCharLen};
-	            }
-	            return verifyObj;
-	        }
-	    }
-	};
-	//字符串长度，一个中文记为2个长度
-	function GetCharLength(str) {
-	    var iLength = 0;
-	    for(var i = 0;i<str.length;i++){
-	        if(str.charCodeAt(i) >255){
-	            iLength += 2;
-	        } else {
-	            iLength += 1;
-	        }
-	    }
-	    return iLength;
-	}
-	//隐藏列表时初始化，防止误提交
-	function clearSelect(target_id, isShow, default_option)
-	{
-		if(isShow=="show"){
-			$('#' + target_id).show();
-		}else{
-			$('#' + target_id).hide();
+	            },
+	            isFunc: function(funcName){
+	                return typeof funcName == 'function';
+	            },
+	            VerifyCharLength: function(str, maxLen){
+		            var newCharLen = maxLen;
+		            var textFlag = true;
+		            var verifyObj = {"flag": textFlag, "charLen": newCharLen};
+		            if (str && str!=''){
+		                if(GetCharLength(str)>maxLen){
+		                	var charLen = str.length;
+		                    textFlag = false;
+		                    var l = 0;
+		                    for(var i=0;i<charLen; i++){
+		                    	l += GetCharLength(str[i]);
+		                    	if( l==maxLen ){
+		                    		newCharLen = (i+1);
+		                    		break;
+		                    	}else if(l>maxLen){
+		                    		newCharLen = i;
+		                    		break;
+		                    	}
+		                    }
+		                }
+		                verifyObj = {"flag": textFlag, "charLen":newCharLen};
+		            }
+		            return verifyObj;
+		        }
+		    }
+		};
+		//字符串长度，一个中文记为2个长度
+		function GetCharLength(str) {
+		    var iLength = 0;
+		    for(var i = 0;i<str.length;i++){
+		        if(str.charCodeAt(i) >255){
+		            iLength += 2;
+		        } else {
+		            iLength += 1;
+		        }
+		    }
+		    return iLength;
 		}
-	    if (default_option){
-	    	$('#' + target_id).html('<option value="0">' + default_option + '</option>');
-	    }
-	}
 
-	//提交注册
-	function check_register(e) {
+		//提交注册
+		function check_register(e) {
+		    //账户信息
+		    var mobilePhoneTrim = $.trim($('#mobilePhone').val());
+		    var userNameTrim = $.trim($('#userName').val());
+	 	    //个人信息
+	 	    var nameTrim = $.trim($('#name').val());
 
-	    //账户信息
-	    var mobilePhoneTrim = $.trim($('#mobilePhone').val());
-	    var userNameTrim = $.trim($('#userName').val());
-// 	    //企业信息
-// 	    var companyNameTrim = $.trim($('#J_companyName').val());
-// 	    var addrDetail = $.trim($('#addr_detail').val());
+	 	    // 企业信息
+	 	    var address4 = $.trim($('#address4').val());
+	 	    //为空判断
+		    if (userNameTrim == '' || mobilePhoneTrim == '' || nameTrim == '') {
+		        if (mobilePhoneTrim == "") {
+		            checkReg.tool.switchInputStyle('error','mobilePhone', 'tipImgMobile','tipInfoMobilePhone');
+		            $('#tipInfoMobilePhone').html(checkReg.lang_zh['3202']);
+		        }
+		        if (userNameTrim == "") {
+		            checkReg.tool.switchInputStyle('error','userName', 'tipImgUserName','tipInfoUserName');
+		            $('#tipInfoUserName').html(checkReg.lang_zh['3102']);
+		        }
+		        if (nameTrim == "") {
+		            checkReg.tool.switchInputStyle('error', 'name', 'tipImgName','tipInfoName');
+		            $('#tipInfoName').html(checkReg.lang_zh['3132']);
+		        }
 
-// 	    var emailTrim = $.trim($('#J_email').val());
-// 	    var areaCodeTrim = $.trim($('#J_areaCode').val());
-// 	    var telephoneTrim = $.trim($('#J_telphone').val());
-// 	    var linkmanTrim = $.trim($('#J_linkman').val());
-	    //为空判断
-	    if (userNameTrim == '' || mobilePhoneTrim == '') {
-//	    		|| companyNameTrim == '' || emailTrim == '' || areaCodeTrim == ''
-//	            || telephoneTrim == '' || linkmanTrim == ''
-
-	        if (mobilePhoneTrim == "") {
-	            checkReg.tool.switchInputStyle('error','mobilePhone', 'J_tipImgMobile','tipInfoMobilePhone');
-	            $('#tipInfoMobilePhone').html(checkReg.lang_zh['3202']);
-	        }
-	        if (userNameTrim == "") {
-	            checkReg.tool.switchInputStyle('error','userName', 'J_tipImgUserName','tipInfoUserName');
-	            $('#tipInfoUserName').html(checkReg.lang_zh['3102']);
-	        }
-
-// 	        if (companyNameTrim == "") {
-// 	            checkReg.tool.switchInputStyle('error', 'J_companyName', 'J_tipImgCompanyName', 'J_tipInfoCompanyName');
-// 	            $('#J_tipInfoCompanyName').html(checkReg.lang_zh['3132']);
-// 	        }
-// 	        if (($province.is(':visible') && provinceId==0) || ($cityId.is(':visible') && cityId==0)
-// 	        		|| ($townId.is(':visible') && townId==0) || ($quarterId.is(':visible') && quarterId==0)) {
-// 	            checkReg.tool.switchInputStyle('error', '', 'J_tipImgAddr', 'J_tipInfoAddr');
-// 	            $('#J_tipInfoAddr').html(checkReg.lang_zh['3143']);
-// 	        }
-// 	        if (addrDetail=='') {
-// 	            checkReg.tool.switchInputStyle('error', 'addr_detail', 'J_tipImgAddr', 'J_tipInfoAddr');
-// 	            $('#J_tipInfoAddr').html(checkReg.lang_zh['3143']);
-// 	        }
-// 	        if (emailTrim == "") {
-// 	            checkReg.tool.switchInputStyle('error','J_email', 'J_tipImgEmail','J_tipInfoEmail');
-// 	            $('#J_tipInfoEmail').html(checkReg.lang_zh['3152']);
-// 	        }
-// 	        if (areaCodeTrim == "") {
-// 	            checkReg.tool.switchInputStyle('error','J_areaCode', 'J_tipImgCompanyTel','J_tipInfoAreaCode');
-// 	            $('#J_tipInfoAreaCode').html(checkReg.lang_zh['3162']);
-// 	        }
-// 	        if (telephoneTrim == "") {
-// 	            checkReg.tool.switchInputStyle('error','J_telphone', 'J_tipImgCompanyTel','J_tipInfoTelphone');
-// 	            $('#J_tipInfoTelphone').html(checkReg.lang_zh['3172']);
-// 	        }
-// 	        if (linkmanTrim == "") {
-// 	            checkReg.tool.switchInputStyle('error','J_linkman', 'J_tipImgLinkman','J_tipInfoLinkman');
-// 	            $('#J_tipInfoLinkman').html(checkReg.lang_zh['3192']);
-// 	        }
-
-	        //防止重复提交
-	        submitBtnAvailability('enable');
-	        e.preventDefault();
-	        return false;
-	    }
-
-	    //所填信息是否正确判断
-
-		if (userNameIsOk &&
-			// 	    		companyNameIsOk && emailIsOk && areaCodeIsOk
-			// 	            && telephoneIsOk && telExtensionIsOk && companyAddrIsOk && linkmanIsOk &&
-			mobilePhoneIsOk) {
-			return true;
-// 				jQuery
-// 						.ajax({
-// 							type : 'POST',
-// 							url : 'register_enterprise_handle.php',
-// 							data : jQuery('#registerForm').serialize(),
-// 							async : false,
-// 							cache : false,
-// 							success : function(errorCode) {
-// 								if (errorCode == '0') {
-// 									var returnUrl = $('#returnUrl').val();
-// 									window.location.href = "regmobileok.php?mobile_phone="
-// 											+ mobileTrim
-// 											+ "&email="
-// 											+ emailTrim
-// 											+ "&userName="
-// 											+ userNameTrim
-// 											+ "&returnurl="
-// 											+ returnUrl;
-// 								} else {
-// 									handlerError(errorCode);
-// 								}
-// 							},
-// 							complete : function() {
-// 								//防止重复提交
-// 								submitBtnAvailability('enable');
-// 							}
-// 						});
+		        //防止重复提交
+		        submitBtnAvailability('enable');
+		        e.preventDefault();
+		        return false;
+		    }
+		    //所填信息是否正确判断
+			if (mobilePhoneIsOk && userNameIsOk && emailIsOk && nameIsOk && birthdayIsOk && address4IsOk) {
+				return true;
 
 			} else {
-				e.preventDefault();
-				submitBtnAvailability('enable');
-				return false;
+					e.preventDefault();
+					submitBtnAvailability('enable');
+					return false;
 			}
 		}
 		//通过浏览器回退按钮返回该页面时，不会清空之前已填写的内容，需要在加载页面时验证一下已填写的内容
 		function verifyRollback() {
-			checkReg.userName.checkUserName();
-// 			checkReg.companyName.checkCompanyName();
-// 			checkReg.companyAddress.check_country_province_city();
-// 			checkReg.companyEmail.checkEmail();
-// 			checkReg.companyTel.areaCode.checkAreaCode();
-// 			checkReg.companyTel.telephone.checkTelephone();
-// 			checkReg.companyTel.telExtension.checkTelExtension();
-// 			checkReg.companyLinkman.checkLinkman();
 			checkReg.mobilePhone.checkMobilePhone();
+			checkReg.userName.checkUserName();
+ 			checkReg.email.checkEmail();
+			checkReg.name.checkName();
+ 			checkReg.birthday.checkBirthday();
+ 			checkReg.address.checkAddress();
 		}
 		//防止重复提交注册
 		function submitBtnAvailability(type) {
@@ -814,63 +664,8 @@
 				$('#saveButton').show();
 			}
 		}
-		//后台验证各种错误并返回提示信息，用于错误兼容
-		function handlerError(errorCode) {
-			switch (errorCode) {
-			case "0":
-				break;
-			case "-1": //非法参数
-				$('#J_tipInfoAgreement').html(checkReg.lang_zh['3241']);
-				break;
-			case "1": //用户名已存在
-				var userName = $('#userName').val();
-				checkReg.tool.switchInputStyle('error', 'userName',
-						'J_tipImgUserName', 'tipInfoUserName');
-				$('#tipInfoUserName').html(
-						checkReg.lang_zh['3103'].replace('{#userName#}',
-								userName));
-				break;
-			case "2": //公司名称已存在
-				checkReg.tool.switchInputStyle('error', 'J_companyName',
-						'J_tipImgCompanyName', 'J_tipInfoCompanyName');
-				$('#J_tipInfoCompanyName').html(checkReg.lang_zh['3134']);
-				break;
-			case "3": //邮箱已存在
-				var email = $('#J_email').val();
-				checkReg.tool.switchInputStyle('error', 'J_email',
-						'J_tipImgEmail', 'J_tipInfoEmail');
-				$('#J_tipInfoEmail').html(
-						checkReg.lang_zh['3154'].replace('{#Email#}', email));
-				break;
-			case "4": //手机号已存在
-				var mobile = $('#mobilePhone').val();
-				checkReg.tool.switchInputStyle('error', 'mobilePhone',
-						'J_tipImgMobile', 'tipInfoMobilePhone');
-				$('#tipInfoMobilePhone').html(
-						checkReg.lang_zh['3204'].replace('{#Email#}', mobile));
-				break;
-			case "5": //手机号为空
-				checkReg.tool.switchInputStyle('error', 'mobilePhone',
-						'J_tipImgMobile', 'tipInfoMobilePhone');
-				$('#tipInfoMobilePhone').html(checkReg.lang_zh['3202']);
-				break;
-			case "6": //公司名为空
-				checkReg.tool.switchInputStyle('error', 'J_companyName',
-						'J_tipImgCompanyName', 'J_tipInfoCompanyName');
-				$('#J_tipInfoCompanyName').html(checkReg.lang_zh['3132']);
-				break;
-			case "8": //入库失败
-				$('#J_tipInfoAgreement').html(checkReg.lang_zh['3241']);
-				break;
-			default:
-				break;
-			}
-		}
-
 		$(function() {
 			verifyRollback();
-
-
 			//手机号码
 			$('#mobilePhone').bind("focus", function() {
 				checkReg.mobilePhone.checkMobilePhoneFocus();
@@ -878,7 +673,6 @@
 			$("#mobilePhone").blur(function() {
 				checkReg.mobilePhone.checkMobilePhone();
 			});
-
 			//设置鼠标焦点在输入框内时提示信息
 			$('#userName').bind("focus", function() {
 				checkReg.userName.checkFocus();
@@ -891,86 +685,51 @@
 			$("#userName").blur(function() {
 				checkReg.userName.checkUserName();
 			});
+			//邮箱
+			$('#email').bind("focus", function() {
+				checkReg.email.checkEmailFocus();
+			});
+			$("#email").blur(function() {
+				checkReg.email.checkEmail();
+ 			});
+ 			//名称
+			$('#name').bind("focus", function() {
+				checkReg.name.checkNameFocus();
+			});
+			$("#name").blur(function() {
+				checkReg.name.checkName();
+			});
+			//最多只允许输入30个汉字 60个字符
+			$('#name').on('keyup', function() {
+				checkReg.name.checkKeypress();
+			});
+			// 生日
+			$('#birthday').on("focus", function() {
+				checkReg.birthday.checkBirthdayFocus();
+			});
+			$("#birthday").on('blur', function() {
+				checkReg.birthday.checkBirthday();
+			});
+			//详细地址
+			$('#address4').on("focus", function() {
+				checkReg.address.checkAddressFocus();
+			});
+			//最多只允许输入64个汉字
+			$('#address4').on("keyup", function() {
+				checkReg.address.checkKeypress();
+			});
+			$("#address4").on('blur', function() {
+				checkReg.address.checkAddress();
+			});
 
-// 			//公司名称
-// 			$('#J_companyName').bind("focus", function() {
-// 				checkReg.companyName.checkCompanyNameFocus();
-// 			});
-// 			$("#J_companyName").blur(function() {
-// 				checkReg.companyName.checkCompanyName();
-// 			});
-// 			//最多只允许输入30个汉字 60个字符
-// 			$('#J_companyName').on('keyup', function() {
-// 				checkReg.companyName.checkKeypress();
-// 			});
-
-// 			//详细地址
-// 			$('#addr_detail').on("focus", function() {
-// 				checkReg.companyAddress.checkAddrDetailFocus();
-// 			});
-// 			//最多只允许输入64个汉字
-// 			$('#addr_detail').on("keyup", function() {
-// 				checkReg.companyAddress.checkKeypress();
-// 			});
-// 			$("#addr_detail").on('blur', function() {
-// 				checkReg.companyAddress.check_country_province_city();
-// 			});
-
-// 			/******* companyAddr end *******/
-// 			//公司邮箱
-// 			$('#J_email').bind("focus", function() {
-// 				checkReg.companyEmail.checkEmailFocus();
-// 			});
-// 			$("#J_email").blur(function() {
-// 				checkReg.companyEmail.checkEmail();
-// 			});
-
-// 			//固定电话 区号
-// 			$('#J_areaCode').bind("focus", function() {
-// 				checkReg.companyTel.areaCode.checkAreaCodeFocus();
-// 			});
-// 			$("#J_areaCode").blur(function() {
-// 				checkReg.companyTel.areaCode.checkAreaCode();
-// 			});
-// 			//固定电话 座机号
-// 			$('#J_telphone').bind("focus", function() {
-// 				checkReg.companyTel.telephone.checkTelephoneFocus();
-// 			});
-// 			$("#J_telphone").blur(function() {
-// 				checkReg.companyTel.telephone.checkTelephone();
-// 			});
-// 			//固定电话 分机号
-// 			$('#J_telExtension').bind("focus", function() {
-// 				checkReg.companyTel.telExtension.checkTelExtensionFocus();
-// 			});
-// 			$("#J_telExtension").blur(function() {
-// 				checkReg.companyTel.telExtension.checkTelExtension();
-// 			});
-
-// 			//联系人姓名
-// 			$('#J_linkman').bind("focus", function() {
-// 				checkReg.companyLinkman.checkLinkmanFocus();
-// 			});
-// 			//最多只允许输入32个汉字
-// 			$('#J_linkman').on('keyup', function() {
-// 				checkReg.companyLinkman.checkKeypress();
-// 			});
-// 			$("#J_linkman").blur(function() {
-// 				checkReg.companyLinkman.checkLinkman();
-// 			});
-
-			//提交注册失败后，点击任何输入框，情况注册提示错误信息
-			$('#userName, #mobilePhone')
-// 							+ '#city_id, #town_id, #quarter_id, #addr_detail,#J_email, '
-// 							+ '#J_areaCode, #J_telphone, #J_telExtension, #J_linkman')
-					.bind("focus", function() {
-						var tipInfoAgreement = $('#J_tipInfoAgreement').html();
-						if (tipInfoAgreement == checkReg.lang_zh['3241']) {
-							$('#J_tipInfoAgreement').html('');
-						}
-					});
+				//提交注册失败后，点击任何输入框，情况注册提示错误信息
+// 				$('#mobilePhone, #userName, #email, #name, #address4 ,#birthday').bind("focus", function() {
+// 					var tipInfoError = $('#tipInfoError').html();
+// 					if (tipInfoError == checkReg.lang_zh['3241']) {
+// 						$('#tipInfoError').html('');
+// 					}
+// 				});
 			//提交注册
-// 			$('#saveButton').bind("click", function() {
 			$('form').submit(function(e) {
 				//防止重复提交
 				submitBtnAvailability('disable');
@@ -979,29 +738,6 @@
 				//check_register();
 			});
 		});
-
-		// Example starter JavaScript for disabling form submissions if there are invalid fields
-		// (function() {
-		// 	'use strict';
-		// 	window.addEventListener('load',
-		// 			function() {
-		// 				// Fetch all the forms we want to apply custom Bootstrap validation styles to
-		// 				var forms = document
-		// 						.getElementsByClassName('needs-validation');
-		// Loop over them and prevent submission
-		// 				var validation = Array.prototype.filter.call(forms,
-		// 						function(form) {
-		// 							form.addEventListener('submit', function(
-		// 									event) {
-		// 								if (form.checkValidity() === false) {
-		// 									event.preventDefault();
-		// 									event.stopPropagation();
-		// 								}
-		// 								form.classList.add('was-validated');
-		// 							}, false);
-		// 						});
-		// 			}, false);
-		// })();
 	</script>
 	<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 	<!-- 暂时不用
