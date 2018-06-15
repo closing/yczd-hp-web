@@ -18,7 +18,7 @@
 	th:href="@{/resources/css/bootstrap/bootstrap.min.css}">
 <!-- Custom styles for this template -->
 <link th:href="@{/resources/css/form-validation.css}" rel="stylesheet">
-<title>企业注册|源产直达</title>
+<title>企业商户注册|源产直达</title>
 
 </head>
 
@@ -31,7 +31,6 @@
 	<!-- 页面头部 -->
 	<div id="header" th:include="layout :: header"></div>
 
-
 	<!-- 页面内容 由此开始 -->
 	<!-- 注册 -->
 	<br>
@@ -40,26 +39,26 @@
 		<br>
 		<div class="row">
 			<div class="col-md-8 order-md-1">
-				<h4 class="mb-3">注册信息</h4>
-				<form method="POST" class="needs-validation" th:action="@{/signup/company}"  th:object="${user}" >
+				<h4 class="mb-3">企业商户注册信息</h4>
+				<form method="POST"  th:action="@{/signup/company}"  th:object="${user}" >
 					<div class="mb-3">
 						<label for="mobile">手机号码</label> <input type="text"
-							class="form-control" th:field="*{mobilePhone}"  MaxLength="11"
-							placeholder="88888888888">
+							class="form-control" th:field="*{mobilePhone}"  MaxLength="11" tabindex="10"
+							placeholder="例:88888888888">
 						<div class="invalid-feedback" id="tipInfoMobilePhone"
 							style="z-index: 1"></div>
 					</div>
 					<div class="mb-3">
 						<label for="userName">用户名</label> <input type="text"
-							class="form-control" th:field="*{userName}"
-							placeholder="zhangsan">
+							class="form-control" th:field="*{userName}" MaxLength="20" tabindex="11"
+							placeholder="例:zhangsan_123">
 						<div class="invalid-feedback" id="tipInfoUserName"></div>
 
 					</div>
 					<div class="mb-3">
 						<label for="email">企业邮箱</label> <input type="text"
 							class="form-control" th:field="*{email}"
-							placeholder="you@example.com">
+							placeholder="例:zhangsan@yuanchanzhida.net" MaxLength="40"  tabindex="12">
 						<div class="invalid-feedback" id="tipInfoEmail"></div>
 					</div>
 
@@ -67,29 +66,29 @@
 					<div class="row">
 						<div class="col-md-4 mb-3">
 							<label for="companyName">公司名称</label>
-							<input type="text"class="form-control" th:field="*{companyName}">
-							<div class="tipInfocompanyName"></div>
+							<input type="text"class="form-control" th:field="*{companyName}"  MaxLength="60"  tabindex="13"
+								   placeholder="请填写单位执照上的名称">
+							<div class="tipInfoCompanyName" id="tipInfoCompanyName"></div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-4 mb-3">
 							<label for="address1">公司地址</label> <select
-								class="custom-select d-block w-100" th:field="*{address1}">
+								class="custom-select d-block w-100" th:field="*{address1}"  tabindex="21">
 								<option value="">----请选择----</option>
 								<option th:each="item:${areaList}" th:value="${item.code}"
 									th:text="${item.name}"></option>
 							</select>
-							<div class="invalid-feedback"></div>
 						</div>
 						<div class="col-md-4 mb-3">
 							<label for="address2"></label> <select
-								class="custom-select d-block w-100" th:field="*{address2}">
+								class="custom-select d-block w-100" th:field="*{address2}"  tabindex="22">
 								<option value="">----请选择----</option>
 							</select>
 						</div>
 						<div class="col-md-4 mb-3">
 							<label for="address3"></label> <select
-								class="custom-select d-block w-100" th:field="*{address3}">
+								class="custom-select d-block w-100" th:field="*{address3}"  tabindex="23">
 								<option value="">----请选择----</option>
 							</select>
 						</div>
@@ -98,40 +97,53 @@
 						<div class="col-md-4 mb-3">
 							<label for="address4"></label> <input type="text"
 								class="form-control" th:field="*{address4}"
-								placeholder="请填写地址详细信息">
+								placeholder="请填写地址详细信息"  tabindex="30" Maxlength="100">
 							<div class="invalid-feedback" id="tipInfoAddress4"></div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 mb-3">
 							<label for="telphone1">固定电话</label>
-							<input type="text" class="form-control" th:field="*{telphone1}"  placeholder="区号  "  MaxLength="4">
-							<input type="text" class="form-control" th:field="*{telphone2}"  placeholder="座机号"  MaxLength="8">
-							<input type="text" class="form-control" th:field="*{telphone3}"  placeholder="分机号"  MaxLength="8">
-							<div class="invalid-feedback" id ="tipInfoTelphone">请填写单位执照上得名称</div>
+							<input type="text"
+								class="form-control" th:field="*{telphone1}"
+								onkeyup="this.value=this.value.replace(/\D/g,'')"
+								onafterpaste="this.value=this.value.replace(/\D/g,'')"
+								placeholder="区号  " MaxLength="4"  tabindex="41" >
+						    <input type="text"
+								class="form-control" th:field="*{telphone2}"
+								onkeyup="this.value=this.value.replace(/\D/g,'')"
+								onafterpaste="this.value=this.value.replace(/\D/g,'')"
+								placeholder="座机号" MaxLength="8" tabindex="42">
+							 <input type="text"
+								class="form-control" th:field="*{telphone3}"
+								onkeyup="this.value=this.value.replace(/\D/g,'')"
+								onafterpaste="this.value=this.value.replace(/\D/g,'')"
+								placeholder="分机号" MaxLength="8" tabindex="43">
+							<div class="invalid-feedback" id="tipInfoTelphone"></div>
 						</div>
 					</div>
 
 					<div class="row">
 						<div class="col-md-4 mb-3">
 							<label for="contact">联系人姓名</label> <input type="text"
-								class="form-control" th:field="*{contact}">
-							<div class="tipInfoContact">请填写单位执照上得名称</div>
+								class="form-control" th:field="*{contact}" MaxLength="30" tabindex="50">
+							<div class="tipInfoContact" id="tipInfoContact"></div>
 						</div>
 					</div>
 						<hr class="mb-4">
 					<div class="custom-control custom-checkbox">
 						<input type="checkbox" class="custom-control-input"
-							name="subscribe" value="true" checked> <label
+							name="subscribe" value="true" checked tabindex="51"> <label
 							class="custom-control-label" for="subscribe">订阅</label>
 						<div class="invalid-feedback" id="tipInfoSubscribe"></div>
 					</div>
 
+					<hr class="mb-4">
 
 					<button class="btn btn-primary btn-lg btn-block" id="saveButton"
-						type="submit">注册</button>
+						type="submit" tabindex="61">注册</button>
 					<button class="btn btn-primary btn-lg btn-block disabled invisible"
-						id="saveButtonUnclick" type="submit">注册</button>
+						id="saveButtonUnclick" type="submit" tabindex="62">注册</button>
 				</form>
 			</div>
 		</div>
@@ -147,32 +159,8 @@
 	<script th:src="@{/resources/js/vendor/holder.min.js}"></script>
 	<script th:src="@{/resources/js/plugins.js}"></script>
 	<script th:src="@{/resources/js/area.js}"></script>
-	<script>
-
-		// Example starter JavaScript for disabling form submissions if there are invalid fields
-		// (function() {
-		// 	'use strict';
-		// 	window.addEventListener('load',
-		// 			function() {
-		// 				// Fetch all the forms we want to apply custom Bootstrap validation styles to
-		// 				var forms = document
-		// 						.getElementsByClassName('needs-validation');
-		// Loop over them and prevent submission
-		// 				var validation = Array.prototype.filter.call(forms,
-		// 						function(form) {
-		// 							form.addEventListener('submit', function(
-		// 									event) {
-		// 								if (form.checkValidity() === false) {
-		// 									event.preventDefault();
-		// 									event.stopPropagation();
-		// 								}
-		// 								form.classList.add('was-validated');
-		// 							}, false);
-		// 						});
-		// 			}, false);
-		// })();
-	</script>
-	<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+	<script th:src="@{/resources/js/signup/reg_company.js}"></script>
+		<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 	<!-- 暂时不用
 	<script>
 		window.ga = function() {
