@@ -33,7 +33,7 @@ public class UserDao implements IUserDao {
 			+ ":telphone3,	:subscribe)";
 
 	private static final String DELETE_SQL = "delete from  user where id = :id";
-	private static final String CHECK_SQL = "select count(id) as count from user where email = :key or user_name= :key or mobilephone = :key";
+	private static final String CHECK_SQL = "select count(id) as count from user where email = :key or user_name= :key or mobilephone = :key or company_name = :key";
 
 	//
 	// 插入SQL
