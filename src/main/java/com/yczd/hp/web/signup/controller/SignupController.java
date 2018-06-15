@@ -54,7 +54,6 @@ public class SignupController {
 		// company :21
 		// station :30
 		// courier :40
-
 		if (StringUtils.isEmpty(type) || (!"company".equals(type) && !"person".equals(type) && !"courier".equals(type)
 				&& !"station".equals(type) && !"supplyer".equals(type))) {
 
@@ -87,6 +86,7 @@ public class SignupController {
 		user.setEmail(StringUtils.isEmpty(form.getEmail()) ? null : form.getEmail());
 		user.setName(StringUtils.isEmpty(form.getName()) ? null : form.getName());
 		user.setBirthday(StringUtils.isEmpty(form.getBirthday()) ? null : Date.valueOf(form.getBirthday()));
+		user.setSex(StringUtils.isEmpty(form.getSex()) ? "9" : form.getSex());
 		user.setAddress1(StringUtils.isEmpty(form.getAddress1()) ? null : Integer.valueOf(form.getAddress1()));
 		user.setAddress2(StringUtils.isEmpty(form.getAddress2()) ? null : Integer.valueOf(form.getAddress2()));
 		user.setAddress3(StringUtils.isEmpty(form.getAddress3()) ? null : Integer.valueOf(form.getAddress3()));
