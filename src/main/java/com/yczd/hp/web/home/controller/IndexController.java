@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class IndexController {
 	@RequestMapping(value = { "", "index" }, method = { RequestMethod.GET, RequestMethod.POST })
 	public String input(Model model) {
-		return "signup/signup_person";
+		
+		return "redirect:/signup/person";
 	}
 }
