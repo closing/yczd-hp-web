@@ -1,192 +1,87 @@
-package com.yczd.hp.web.common.daodata;
+package com.yczd.hp.web.common.dao;
 
-import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 
-public class User {
-	private Integer id;
+import javax.annotation.Resource;
 
-	private String userType;
-	private String userName;
+import org.springframework.context.annotation.Scope;
+import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
+import org.springframework.stereotype.Repository;
 
-	private String mobilePhone;
-	private String email;
-	private String drivingLicenseType;
+import com.yczd.hp.web.common.daodata.User;
 
-	private String name;
-	private String sex;
-	private Date birthday;
+@Repository
+@Scope("prototype")
+public class UserDao implements IUserDao {
 
-	private Integer address1;
-	private Integer address2;
-	private Integer address3;
-	private String address4;
+	@Resource
+	NamedParameterJdbcOperations jdbcTemplate;
 
-	private String contact;
-	private String companyName;
-	private String telphone1;
-	private String telphone2;
-	private String telphone3;
-	private String telphone;
+	// 查询SQL
+	private static final String QUERY_SQL = "select username as username,id as id,email as email from user where id =:id";
+	private static final String UPDATE_SQL = "update user set  username =:username, email = :email, password = :passowrd  where id = :id where id =:id";
+	private static final String INSERT_SQL = "INSERT INTO user (user_type, user_name, mobilephone, email,"
+			+ "driving_license_type,	name,	sex,	birthday,	address1,	address2,	address3,	address4,"
+			+ "contact,	company_name,	telphone1,	telphone2,	telphone3,	subscribe)	VALUES	"
+			+ "(:userType,	:userName,	:mobilePhone,	:email,	:drivingLicenseType,	:name,	:sex,	:birthday,"
+			+ ":address1,	:address2,	:address3, :address4,	:contact,	:companyName,	:telphone1,	:telphone2,"
+			+ ":telphone3,	:subscribe)";
 
-	private boolean subscribe;
-	public String getUserType() {
-		return userType;
+	private static final String DELETE_SQL = "delete from  user where id = :id";
+	private static final String CHECK_SQL = "select count(id) as count from user where email = :key or user_name= :key or mobilephone = :key or company_name = :key";
+
+	//
+	// 插入SQL
+	// 更新SQL
+	// 删除SQL
+	// 查询件数
+	@Override
+	public User selectByPrimaryKey(int id) {
+		Map<String, Integer> paramMap = new HashMap<>();
+		paramMap.put("id", id);
+		try {
+
+			return jdbcTemplate.queryForObject(QUERY_SQL, paramMap, this::mapUser);
+		} catch (EmptyResultDataAccessException ex) {
+			return new User();
+		}
 	}
 
-	public void setUserType(String userType) {
-		this.userType = userType;
+	@Override
+	public int insert(User user) {
+		return jdbcTemplate.update(INSERT_SQL, new BeanPropertySqlParameterSource(user));
 	}
 
-	public String getMobilePhone() {
-		return mobilePhone;
+	private User mapUser(ResultSet rs, int row) throws SQLException {
+		User user = new User();
+		user.setId(rs.getInt("id"));
+		user.setUserName(rs.getString("username"));
+		return user;
+
 	}
 
-	public void setMobilePhone(String mobilePhone) {
-		this.mobilePhone = mobilePhone;
+	@Override
+	public int update(User user) {
+		return jdbcTemplate.update(UPDATE_SQL, new BeanPropertySqlParameterSource(user));
+
 	}
 
-	public String getDrivingLicenseType() {
-		return drivingLicenseType;
+	@Override
+	public int delete(User user) {
+
+		return jdbcTemplate.update(DELETE_SQL, new BeanPropertySqlParameterSource(user));
 	}
 
-	public void setDrivingLicenseType(String drivingLicenseType) {
-		this.drivingLicenseType = drivingLicenseType;
+	@Override
+	public boolean check(String key) {
+		Map<String, String> paramMap = new HashMap<>();
+		paramMap.put("key", key);
+		return 0 == jdbcTemplate.queryForObject(CHECK_SQL, paramMap, Integer.class);
 	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getSex() {
-		return sex;
-	}
-
-	public void setSex(String sex) {
-		this.sex = sex;
-	}
-
-	public Date getBirthday() {
-		return birthday;
-	}
-
-	public void setBirthday(Date birthday) {
-		this.birthday = birthday;
-	}
-
-	public Integer getAddress1() {
-		return address1;
-	}
-
-	public void setAddress1(Integer address1) {
-		this.address1 = address1;
-	}
-
-	public Integer getAddress2() {
-		return address2;
-	}
-
-	public void setAddress2(Integer address2) {
-		this.address2 = address2;
-	}
-
-	public Integer getAddress3() {
-		return address3;
-	}
-
-	public void setAddress3(Integer address3) {
-		this.address3 = address3;
-	}
-
-	public String getAddress4() {
-		return address4;
-	}
-
-	public void setAddress4(String address4) {
-		this.address4 = address4;
-	}
-
-	public String getContact() {
-		return contact;
-	}
-
-	public void setContact(String contact) {
-		this.contact = contact;
-	}
-
-	public String getCompanyName() {
-		return companyName;
-	}
-
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
-
-	public String getTelphone1() {
-		return telphone1;
-	}
-
-	public void setTelphone1(String telphone1) {
-		this.telphone1 = telphone1;
-	}
-
-	public String getTelphone2() {
-		return telphone2;
-	}
-
-	public void setTelphone2(String telphone2) {
-		this.telphone2 = telphone2;
-	}
-
-	public String getTelphone3() {
-		return telphone3;
-	}
-
-	public void setTelphone3(String telphone3) {
-		this.telphone3 = telphone3;
-	}
-
-	public String getTelphone() {
-		return telphone;
-	}
-
-	public void setTelphone(String telphone) {
-		this.telphone = telphone;
-	}
-
-	public boolean isSubscribe() {
-		return subscribe;
-	}
-
-	public void setSubscribe(boolean subscribe) {
-		this.subscribe = subscribe;
-	}
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 
 }
