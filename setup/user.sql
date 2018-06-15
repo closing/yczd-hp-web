@@ -28,5 +28,6 @@ CREATE TABLE `user` (
   PRIMARY KEY (`id`),  
   UNIQUE KEY `idx_user_name` (`user_name`),  
   UNIQUE KEY `idx_mobilephone` (`mobilephone`),
-  UNIQUE KEY `idx_email` (`email`)   
+  UNIQUE KEY `idx_email` (`email`),
+  UNIQUE KEY `idx_company_name` (`company_name`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1000000000 DEFAULT CHARSET=gbk COMMENT='用户信息收集表';  
