@@ -77,5 +77,18 @@
 	<welcome-file-list>
 		<welcome-file></welcome-file>
 	</welcome-file-list>
+	<!--错误跳转页面 -->
+	<error-page>
+		<exception-type>java.lang.Throwable</exception-type>
+		<location>/WEB-INF/views/error.html</location>
+	</error-page>
+	<error-page>
+		<error-code>404</error-code>
+		<location>/WEB-INF/views/404.html</location>
+	</error-page>
+	<error-page>
+		<error-code>500</error-code>
+		<location>/WEB-INF/views/error.html</location>
+	</error-page>
 
 </web-app>
