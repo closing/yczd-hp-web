@@ -14,10 +14,10 @@
 <!-- Place favicon.ico in the root directory -->
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet"
-	th:href="@{/resources/css/bootstrap/bootstrap.min.css}">
+<!-- <link rel="stylesheet" th:href="@{/resources/css/bootstrap/bootstrap.min.css}"> -->
+	<link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
 <!-- Custom styles for this template -->
-<link th:href="@{/resources/css/form-validation.css}" rel="stylesheet">
+<link th:href="@{/resources/css/form-validation.min.css}" rel="stylesheet">
 <title>用户注册|源产直达</title>
 
 </head>
@@ -145,13 +145,16 @@
 
 
 	<script th:src="@{/resources/js/vendor/modernizr-3.6.0.min.js}"></script>
-	<script th:src="@{/resources/js/vendor/jquery-3.3.1.min.js}"></script>
-	<script th:src="@{/resources/js/popper/popper.min.js}"></script>
-	<script th:src="@{/resources/js/bootstrap/bootstrap.min.js}"></script>
+	<!-- <script th:src="@{/resources/js/vendor/jquery-3.3.1.min.js}"></script> -->
+	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+	<!-- <script th:src="@{/resources/js/popper/popper.min.js}"></script>-->
+	<script src="https://cdn.bootcss.com/popper.js/1.14.3/umd/popper.min.js"></script>
+	<!-- <script th:src="@{/resources/js/bootstrap/bootstrap.min.js}"></script>-->
+	<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	<script th:src="@{/resources/js/vendor/holder.min.js}"></script>
-	<script th:src="@{/resources/js/plugins.js}"></script>
-	<script th:src="@{/resources/js/area.js}"></script>
-	<script th:src="@{/resources/js/signup/reg_person.js}"></script>
+	<script th:src="@{/resources/js/plugins.min.js}"></script>
+	<script th:src="@{/resources/js/area.min.js}"></script>
+	<script th:src="@{/resources/js/signup/reg_person.min.js}"></script>
 	<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 	<!-- 暂时不用
 	<script>
