@@ -3,6 +3,7 @@ var userNameIsOk = false;
 var emailIsOk = false;
 var nameIsOk = false;
 var birthdayIsOk = false;
+var drivingLicenseIsOk = false;
 var address4IsOk = false;
 var checkReg = {
     emailReg: /^(([a-zA-Z0-9]+\w*((\.\w+)|(-\w+))*[\.-]?[a-zA-Z0-9]+)|([a-zA-Z0-9]))\@[a-zA-Z0-9]+((\.|-)[a-zA-Z0-9]+)*\.[a-zA-Z0-9]+$/, //匹配邮箱
@@ -32,6 +33,9 @@ var checkReg = {
         '3151' : '请输入邮箱',
         '3153' : '邮箱格式不正确，请重新输入',
         '3154' : '该邮箱已被注册，请更换其它邮箱',
+        '3161' : '请选择并填写驾驶证号码',
+        '3162' : '驾驶证格式不正确，请重新输入',
+        '3163' : '该驾驶证已被注册，请更换其它驾驶证',
         '3193' : '姓名只能为2-30个字符，不允许特殊符号',
         '3201' : '请输入手机号码',
         '3202' : '手机号不能为空',
@@ -314,6 +318,56 @@ var checkReg = {
         }
 
     },
+    drivingLicense: {
+        checkDrivingLicenseFocus: function(){
+            checkReg.tool.switchInputStyle('normal','drivingLicense', 'tipImgDrivingLicense','tipInfoDrivingLicense');
+            $('#tipInfoDrivingLicense').html(checkReg.lang_zh['3161']);
+        },
+        checkDrivingLicense: function(){
+        	drivingLicenseIsOk = false;
+            var drivingLicenseExist = false;
+            checkReg.tool.switchInputStyle('normal','drivingLicense', 'tipImgDrivingLicense','tipInfoDrivingLicense');
+            var drivingLicense = $.trim($('#drivingLicense').val());
+            if (drivingLicense == '') {
+            	// 可以不填写
+            	drivingLicenseIsOk = true;
+                return true;
+            }
+            if (drivingLicense.length > 18 || !checkReg.idcardReg.test(drivingLicense)) {
+                checkReg.tool.switchInputStyle('error','drivingLicense', 'tipImgDrivingLicense','tipInfoDrivingLicense');
+                $('#tipInfoDrivingLicense').html(checkReg.lang_zh['3162']);
+                return false;
+            }
+            if (/[ ]/.test(drivingLicense)) {
+                checkReg.tool.switchInputStyle('error','drivingLicense', 'tipImgDrivingLicense','tipInfoDrivingLicense');
+                $('#tipInfoDrivingLicense').html(checkReg.lang_zh['3162']);
+                return false;
+            }
+            $.ajax({
+	            type: 'POST',
+                url: $("#contextPath").val() + '/commonapi/checkUser',
+                dataType : "json",
+                data: {
+                	'key': drivingLicense,
+                },
+                async: false,
+                success: function (flg) {
+                    if (flg == false) {
+                        checkReg.tool.switchInputStyle('error','drivingLicense', 'tipImgDrivingLicense','tipInfoDrivingLicense');
+                        $('#tipInfoDrivingLicense').html(checkReg.lang_zh['3163']);
+                        drivingLicenseExist = true;
+                        return ;
+                    }
+                }
+            });
+            if (drivingLicenseExist == true) {
+                return false;
+            }
+            checkReg.tool.switchInputStyle('ok','drivingLicense', 'tipImgDrivingLicense','tipInfoDrivingLicense');
+            drivingLicenseIsOk = true;
+            return true;
+        }
+    },
     address: {
         checkAddressFocus: function(){
             checkReg.tool.switchInputStyle('normal', 'address4', 'tipImgAddress4', 'tipInfoAddress4');
@@ -451,7 +505,7 @@ function check_register(e) {
         return false;
     }
     //所填信息是否正确判断
-	if (mobilePhoneIsOk && userNameIsOk && emailIsOk && nameIsOk && birthdayIsOk && address4IsOk) {
+	if (mobilePhoneIsOk && userNameIsOk && emailIsOk && nameIsOk && birthdayIsOk && drivingLicenseIsOk && address4IsOk) {
 		return true;
 
 	} else {
@@ -467,6 +521,7 @@ function verifyRollback() {
 	checkReg.email.checkEmail();
 	checkReg.name.checkName();
 	checkReg.birthday.checkBirthday();
+	checkReg.drivingLicense.checkDrivingLicense();
 	checkReg.address.checkAddress();
 }
 //防止重复提交注册
@@ -524,6 +579,13 @@ $(function() {
 	});
 	$("#birthday").on('blur', function() {
 		checkReg.birthday.checkBirthday();
+	});
+	//驾驶证
+	$('#drivingLicense').bind("focus", function() {
+		checkReg.drivingLicense.checkDrivingLicenseFocus();
+	});
+	$("#drivingLicense").blur(function() {
+		checkReg.drivingLicense.checkDrivingLicense();
 	});
 	//详细地址
 	$('#address4').on("focus", function() {

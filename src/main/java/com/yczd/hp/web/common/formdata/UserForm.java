@@ -7,6 +7,7 @@ public class UserForm {
 	private String mobilePhone;
 	private String email;
 	private String drivingLicense;
+	private String drivingLicenseType;
 
 	private String name;
 	private String sex;
@@ -180,6 +181,14 @@ public class UserForm {
 
 	public void setSubscribe(String subscribe) {
 		this.subscribe = subscribe;
+	}
+
+	public String getDrivingLicenseType() {
+		return drivingLicenseType;
+	}
+
+	public void setDrivingLicenseType(String drivingLicenseType) {
+		this.drivingLicenseType = drivingLicenseType;
 	}
 
 }

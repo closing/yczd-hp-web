@@ -6,6 +6,7 @@ CREATE TABLE `user` (
 	`mobilephone`  varchar(11) NOT NULL  COMMENT '手机号码',
 	`email` varchar(40)  COMMENT '邮箱',
 	`driving_license_type` varchar(2)  COMMENT '驾驶证类型',
+	`driving_license` varchar(20)  COMMENT '驾驶证',
 	`name` varchar(30) COMMENT '用户真实姓名',
 	`sex` char(1) NOT NULL DEFAULT '9' COMMENT '用户性别 1:male 0:femail 9:unknown', 
 	`birthday` date  COMMENT '出生年月日',

@@ -86,8 +86,37 @@
 						<div class="col-md-4 mb-3">
 							<label for="birthday">出生日期</label> <input type="date"
 								class="form-control" th:field="*{birthday}"
-								placeholder="1982-01-01" checked tabindex = "30">
+								placeholder="1982-01-01" checked tabindex = "23">
 							<div class="invalid-feedback" id="tipInfoBirthday">请填写出生日期</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3 mb-3">
+							<label for="drivingLicenseType">驾照类型</label> <select
+								class="custom-select d-block w-100" th:field="*{drivingLicenseType}"  tabindex = "24" >
+								<option value="">----请选择----</option>
+								<option value="C1">C1</option>
+								<option value="C2">C2</option>
+								<option value="C3">C3</option>
+								<option value="C4">C4</option>
+								<option value="A1">A1</option>
+								<option value="A1">A2</option>
+								<option value="A1">A3</option>
+								<option value="B1">B1</option>
+								<option value="B2">B2</option>
+								<option value="D">D</option>
+								<option value="E">E</option>
+								<option value="F">F</option>
+								<option value="M">M</option>
+								<option value="N">N</option>
+								<option value="P">P</option>
+							</select>
+						</div>
+						<div class="col-md-5 mb-3">
+							<label for="drivingLicense">驾驶证</label> <input type="text"
+							class="form-control" th:field="*{drivingLicense}"  MaxLength="18" tabindex = "25"
+							placeholder="">
+						<div class="invalid-feedback" id="tipInfoDrivingLicense"></div>
 						</div>
 					</div>
 					<div class="row">

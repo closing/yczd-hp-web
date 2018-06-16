@@ -26,14 +26,14 @@ public class UserDao implements IUserDao {
 	private static final String QUERY_SQL = "select username as username,id as id,email as email from user where id =:id";
 	private static final String UPDATE_SQL = "update user set  username =:username, email = :email, password = :passowrd  where id = :id where id =:id";
 	private static final String INSERT_SQL = "INSERT INTO user (user_type, user_name, mobilephone, email,"
-			+ "driving_license_type,	name,	sex,	birthday,	address1,	address2,	address3,	address4,"
-			+ "contact,	company_name,	telphone1,	telphone2,	telphone3,	subscribe)	VALUES	"
-			+ "(:userType,	:userName,	:mobilePhone,	:email,	:drivingLicenseType,	:name,	:sex,	:birthday,"
-			+ ":address1,	:address2,	:address3, :address4,	:contact,	:companyName,	:telphone1,	:telphone2,"
-			+ ":telphone3,	:subscribe)";
+			+ "driving_license_type, driving_license, name,	sex, birthday, address1, address2, address3, address4,"
+			+ "contact, company_name, telphone1, telphone2,	telphone3, subscribe) values "
+			+ "(:userType, :userName, :mobilePhone,	:email,	:drivingLicenseType, :drivingLicense, :name, :sex, :birthday,"
+			+ ":address1, :address2, :address3, :address4, :contact, :companyName, :telphone1, :telphone2,"
+			+ ":telphone3, :subscribe)";
 
 	private static final String DELETE_SQL = "delete from  user where id = :id";
-	private static final String CHECK_SQL = "select count(id) as count from user where email = :key or user_name= :key or mobilephone = :key or company_name = :key";
+	private static final String CHECK_SQL = "select count(id) as count from user where email = :key or user_name= :key or mobilephone = :key or company_name = :key or driving_license = :key";
 
 	//
 	// 插入SQL

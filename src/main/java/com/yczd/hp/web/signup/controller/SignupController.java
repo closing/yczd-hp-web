@@ -92,7 +92,6 @@ public class SignupController {
 		user.setAddress3(StringUtils.isEmpty(form.getAddress3()) ? null : Integer.valueOf(form.getAddress3()));
 		user.setAddress4(StringUtils.isEmpty(form.getAddress4()) ? null : form.getAddress4());
 		user.setSubscribe(StringUtils.isEmpty(form.getSubscribe()) ? false : Boolean.valueOf(form.getSubscribe()));
-
 		userService.insert(user);
 		return "wechat/signup_success";
 	}

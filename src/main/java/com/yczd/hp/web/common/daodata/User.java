@@ -11,7 +11,7 @@ public class User {
 	private String mobilePhone;
 	private String email;
 	private String drivingLicenseType;
-
+	private String drivingLicense;
 	private String name;
 	private String sex;
 	private Date birthday;
@@ -186,6 +186,15 @@ public class User {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+
+	public String getDrivingLicense() {
+		return drivingLicense;
+	}
+
+	public void setDrivingLicense(String drivingLicense) {
+		this.drivingLicense = drivingLicense;
 	}
 
 
