@@ -1,0 +1,17 @@
+###########
+## Folders
+############
+target
+.settings/
+
+###########
+## Files
+###############
+.#webclasspath
+.classpath
+.project
+.settings/
+.tomcatplugin
+#.gitignore
+jdbc.properties
+
