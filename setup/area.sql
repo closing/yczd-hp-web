@@ -3441,4 +3441,3 @@ INSERT INTO `base_area` VALUES ('820401', '望德堂区', '8204', '1',false);
 INSERT INTO `base_area` VALUES ('820501', '风顺堂区', '8205', '1',false);  
 INSERT INTO `base_area` VALUES ('820601', '嘉模堂区', '8206', '1',false);  
 INSERT INTO `base_area` VALUES ('820701', '圣方济各堂区', '8207', '1',false);  
-update base_area set delflg = true where base_areaid <> '37' and base_areaid <=82 and base_areaid>=11;

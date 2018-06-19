@@ -67,6 +67,10 @@
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>
+		<url-pattern>*.txt</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>default</servlet-name>
 		<url-pattern>*.css</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
@@ -90,5 +94,4 @@
 		<error-code>500</error-code>
 		<location>/WEB-INF/views/error.html</location>
 	</error-page>
-
 </web-app>
