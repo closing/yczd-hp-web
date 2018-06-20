@@ -284,7 +284,11 @@ var checkReg = {
     birthday: {
     	checkBirthdayFocus: function(){
             checkReg.tool.switchInputStyle('normal', 'birthday', 'tipImgInfoBirthday', 'tipInfoBirthday');
-            $('#tipInfoAddr').html(checkReg.lang_zh['3111']);
+            $('#tipInfoBirthday').html(checkReg.lang_zh['3111']);
+            var birthday = $.trim($('#birthday').val());
+            if (birthday == null || birthday == ""){
+            	$('#birthday').attr("value","1988-01-01");
+            }
         },
         checkBirthday: function(){
         	birthdayIsOk = false;
