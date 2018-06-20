@@ -1,14 +1,16 @@
 <configuration>
-	<appender name="STDOUT"
-		class="ch.qos.logback.core.ConsoleAppender">
-		<layout class="ch.qos.logback.classic.PatternLayout">
+	<appender name="FILE"
+		class="ch.qos.logback.core.FileAppender">
+		<file>error.log</file>
+		<append>true</append>
+		<encoder>
 			<Pattern>
 				%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n
 			</Pattern>
-		</layout>
+		</encoder>
 	</appender>
-	<logger name="com.yczd.hp.web" level="TRACE" />
-	<root level="INFO">
-		<appender-ref ref="STDOUT" />
+	<logger name="com.yczd.hp.web" level="ERROR" />
+	<root level="ERROR">
+		<appender-ref ref="FILE" />
 	</root>
 </configuration>
