@@ -92,6 +92,10 @@ public class SignupController {
 		user.setAddress3(StringUtils.isEmpty(form.getAddress3()) ? null : Integer.valueOf(form.getAddress3()));
 		user.setAddress4(StringUtils.isEmpty(form.getAddress4()) ? null : form.getAddress4());
 		user.setSubscribe(StringUtils.isEmpty(form.getSubscribe()) ? false : Boolean.valueOf(form.getSubscribe()));
+		user.setDrivingLicense(StringUtils.isEmpty(form.getDrivingLicense()) ? null : form.getDrivingLicense());
+		user.setDrivingLicenseType(
+				StringUtils.isEmpty(form.getDrivingLicenseType()) ? null : form.getDrivingLicenseType());
+		user.setTelphone3(StringUtils.isEmpty(form.getTelphone3()) ? null : form.getTelphone3());
 		userService.insert(user);
 		return "wechat/signup_success";
 	}

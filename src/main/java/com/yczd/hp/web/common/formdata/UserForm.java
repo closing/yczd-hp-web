@@ -8,7 +8,9 @@ public class UserForm {
 	private String email;
 	private String drivingLicense;
 	private String drivingLicenseType;
-
+	private String carryCapacity;
+	private String carType;
+	private String production;
 	private String name;
 	private String sex;
 	private String birthday;
@@ -189,6 +191,30 @@ public class UserForm {
 
 	public void setDrivingLicenseType(String drivingLicenseType) {
 		this.drivingLicenseType = drivingLicenseType;
+	}
+
+	public String getProduction() {
+		return production;
+	}
+
+	public void setProduction(String production) {
+		this.production = production;
+	}
+
+	public String getCarryCapacity() {
+		return carryCapacity;
+	}
+
+	public void setCarryCapacity(String carryCapacity) {
+		this.carryCapacity = carryCapacity;
+	}
+
+	public String getCarType() {
+		return carType;
+	}
+
+	public void setCarType(String carType) {
+		this.carType = carType;
 	}
 
 }
