@@ -10,8 +10,11 @@ public class User {
 
 	private String mobilePhone;
 	private String email;
+	private String mobilePhoneBy;
 	private String drivingLicenseType;
 	private String drivingLicense;
+	private String carType;
+	private String production;
 	private String name;
 	private String sex;
 	private Date birthday;
@@ -195,6 +198,30 @@ public class User {
 
 	public void setDrivingLicense(String drivingLicense) {
 		this.drivingLicense = drivingLicense;
+	}
+
+	public String getMobilePhoneBy() {
+		return mobilePhoneBy;
+	}
+
+	public void setMobilePhoneBy(String mobilePhoneBy) {
+		this.mobilePhoneBy = mobilePhoneBy;
+	}
+
+	public String getCarType() {
+		return carType;
+	}
+
+	public void setCarType(String carType) {
+		this.carType = carType;
+	}
+
+	public String getProduction() {
+		return production;
+	}
+
+	public void setProduction(String production) {
+		this.production = production;
 	}
 
 

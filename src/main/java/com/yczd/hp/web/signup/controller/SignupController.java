@@ -84,6 +84,7 @@ public class SignupController {
 			user.setUserType("10"); // 个人:10
 		}
 		user.setEmail(StringUtils.isEmpty(form.getEmail()) ? null : form.getEmail());
+		user.setMobilePhoneBy(StringUtils.isEmpty(form.getMobilePhoneBy()) ? null : form.getMobilePhoneBy());
 		user.setName(StringUtils.isEmpty(form.getName()) ? null : form.getName());
 		user.setBirthday(StringUtils.isEmpty(form.getBirthday()) ? null : Date.valueOf(form.getBirthday()));
 		user.setSex(StringUtils.isEmpty(form.getSex()) ? "9" : form.getSex());
@@ -96,6 +97,8 @@ public class SignupController {
 		user.setDrivingLicenseType(
 				StringUtils.isEmpty(form.getDrivingLicenseType()) ? null : form.getDrivingLicenseType());
 		user.setTelphone3(StringUtils.isEmpty(form.getTelphone3()) ? null : form.getTelphone3());
+		user.setProduction(StringUtils.isEmpty(form.getProduction()) ? null : form.getProduction());
+		user.setCarType(StringUtils.isEmpty(form.getCarType()) ? null : form.getCarType());
 		userService.insert(user);
 		return "wechat/signup_success";
 	}

@@ -1,8 +1,10 @@
 var mobilePhoneIsOk = false;
 var userNameIsOk = false;
 var emailIsOk = false;
+var mobilePhoneByIsOk = true;
 var nameIsOk = false;
 var birthdayIsOk = false;
+var productionIsOk = true;
 var address4IsOk = false;
 var checkReg = {
     emailReg: /^(([a-zA-Z0-9]+\w*((\.\w+)|(-\w+))*[\.-]?[a-zA-Z0-9]+)|([a-zA-Z0-9]))\@[a-zA-Z0-9]+((\.|-)[a-zA-Z0-9]+)*\.[a-zA-Z0-9]+$/, //匹配邮箱
@@ -36,7 +38,12 @@ var checkReg = {
         '3202' : '手机号不能为空',
         '3203' : '手机号格式不正确，请重新输入',
         '3204' : '此手机号已注册，请更换其它手机号',
-        '3241' : '注册失败，请稍后重试。'
+		'3205' : '请输入推荐人的手机号码',
+		'3206' : '手机号格式不正确，请重新输入',
+		'3207' : '请输入已注册推荐人的手机号码',
+		'3210' : '请输入主要生产类别',
+		'3211' : '最长只能为50个汉字（100个字符），不允许特殊符号',
+		'3241' : '注册失败，请稍后重试。'
     },
     mobilePhone: {
         checkMobilePhoneFocus: function(){
@@ -44,7 +51,7 @@ var checkReg = {
             $('#tipInfoMobilePhone').html(checkReg.lang_zh['3201']);
         },
         checkMobilePhone: function(){
-            checkReg.tool.switchInputStyle('normal','mobilePhone', 'tipImgMobile','tipInfoMobilePhone');
+            checkReg.tool.switchInputStyle('normal','mobilePhone', 'tipImgMobilePhone','tipInfoMobilePhone');
             mobilePhoneIsOk = false;
             var mobilePhoneExist = false;
             var mobilePhone = $.trim($('#mobilePhone').val());
@@ -53,7 +60,7 @@ var checkReg = {
                 return false;
             }
             if (!checkReg.mobilePhoneReg.test(mobilePhone)) {
-                checkReg.tool.switchInputStyle('error','mobilePhone', 'tipImgMobile','tipInfoMobilePhone');
+                checkReg.tool.switchInputStyle('error','mobilePhone', 'tipImgMobilePhone','tipInfoMobilePhone');
                 $('#tipInfoMobilePhone').html(checkReg.lang_zh['3203']);
                 return false;
             }
@@ -67,7 +74,7 @@ var checkReg = {
                 async: false,
                 success: function (flg) {
                     if (flg == false) {
-                        checkReg.tool.switchInputStyle('error','mobilePhone', 'tipImgMobile','tipInfoMobilePhone');
+                        checkReg.tool.switchInputStyle('error','mobilePhone', 'tipImgMobilePhone','tipInfoMobilePhone');
                         $('#tipInfoMobilePhone').html(checkReg.lang_zh['3204']);
                         mobilePhoneExist = true;
                         return false;
@@ -77,7 +84,7 @@ var checkReg = {
             if (mobilePhoneExist == true) {
                 return false;
             }
-            checkReg.tool.switchInputStyle('ok','mobilePhone', 'tipImgMobile','tipInfoMobilePhone');
+            checkReg.tool.switchInputStyle('ok','mobilePhone', 'tipImgMobilePhone','tipInfoMobilePhone');
             mobilePhoneIsOk = true;
             return true;
         }
@@ -228,6 +235,59 @@ var checkReg = {
             return true;
         }
     },
+	mobilePhoneBy : {
+		checkMobilePhoneByFocus : function() {
+			checkReg.tool.switchInputStyle('normal', 'mobilePhoneBy',
+					'tipImgMobilePhoneBy', 'tipInfoMobilePhoneBy');
+			$('#tipInfoMobilePhoneBy').html(checkReg.lang_zh['3205']);
+		},
+		checkMobilePhoneBy : function() {
+			checkReg.tool.switchInputStyle('normal', 'mobilePhoneBy',
+					'tipImgMobilePhoneBy', 'tipInfoMobilePhoneBy');
+			mobilePhoneByIsOk = false;
+			var mobilePhoneByExist = true;
+			var mobilePhoneBy = $.trim($('#mobilePhoneBy').val());
+			if (mobilePhoneBy == '') {
+				// 可以不填
+				mobilePhoneByIsOk = true;
+				return true;
+			}
+			if (!checkReg.mobilePhoneReg.test(mobilePhoneBy)) {
+				checkReg.tool.switchInputStyle('error', 'mobilePhoneBy',
+						'tipImgMobilePhoneBy', 'tipInfoMobilePhoneBy');
+				$('#tipInfoMobilePhoneBy').html(checkReg.lang_zh['3206']);
+				return false;
+			}
+			$.ajax({
+				type : 'POST',
+				url : $("#contextPath").val() + '/commonapi/checkUser',
+				dataType : "json",
+				data : {
+					'key' : mobilePhoneBy
+				},
+				async : false,
+				success : function(flg) {
+					if (flg == true) {
+						// flg =false:存在 true:不存在
+						checkReg.tool.switchInputStyle('error',
+								'mobilePhoneBy', 'tipImgMobilePhoneBy',
+								'tipInfoMobilePhoneBy');
+						$('#tipInfoMobilePhoneBy').html(
+								checkReg.lang_zh['3207']);
+						mobilePhoneByExist = false;
+						return false;
+					}
+				}
+			});
+			if (mobilePhoneByExist == false) {
+				return false;
+			}
+			checkReg.tool.switchInputStyle('ok', 'mobilePhoneBy',
+					'tipImgMobilePhoneBy', 'tipInfoMobilePhoneBy');
+			mobilePhoneByIsOk = true;
+			return true;
+		}
+	},
     name: {
         checkNameFocus: function(){
             checkReg.tool.switchInputStyle('normal','name', 'tipImgInfoName','tipInfoName');
@@ -316,6 +376,54 @@ var checkReg = {
             return true;
         }
 
+    },
+    production: {
+        checkProductionFocus: function(){
+            checkReg.tool.switchInputStyle('normal','production', 'tipImgInfoProduction','tipInfoProduction');
+            $('#tipInfoProduction').html(checkReg.lang_zh['3210']);
+        },
+        checkKeypress: function(){
+        	var production = $.trim($('#production').val());
+            if (production == '') {
+                return true;
+            }
+        	//格式正确性验证
+            var verifyObj = checkReg.tool.VerifyCharLength(production, 100);
+            if(verifyObj && ('flag' in verifyObj) && verifyObj.flag===false){
+            	checkReg.tool.switchInputStyle('error','production', 'tipImgInfoProduction','tipInfoProduction');
+                $('#tipInfoProduction').text(checkReg.lang_zh['3211']);
+                $('#production').val(production.substr(0,verifyObj.charLen));
+                return false;
+            }else{
+            	checkReg.tool.switchInputStyle('normal','production', 'tipImgInfoProduction','tipInfoProduction');
+            	return true;
+            }
+        },
+        checkProduction: function(){
+        	productionIsOk = false;
+            checkReg.tool.switchInputStyle('normal','production', 'tipImgInfoProduction','tipInfoProduction');
+
+            var production = $.trim($('#production').val());
+            if (production == '') {
+            	productionIsOk = true;
+                return true;
+            }
+            //格式正确性验证
+            var len = GetCharLength(production);
+            if (len<2 || len>100){
+                checkReg.tool.switchInputStyle('error','production', 'tipImgInfoProduction','tipInfoProduction');
+                $('#tipInfoProduction').html(checkReg.lang_zh['3211']);
+                return false;
+            }
+            if (!checkReg.nameReg.test(production)) {
+                checkReg.tool.switchInputStyle('error','production', 'tipImgInfoProduction','tipInfoProduction');
+                $('#tipInfoProduction').html(checkReg.lang_zh['3211']);
+                return false;
+            }
+            checkReg.tool.switchInputStyle('ok','production', 'tipImgInfoProduction','tipInfoProduction');
+            productionIsOk = true;
+            return true;
+        }
     },
     address: {
         checkAddressFocus: function(){
@@ -431,12 +539,10 @@ function check_register(e) {
     //个人信息
     var nameTrim = $.trim($('#name').val());
 
-    // 企业信息
-    var address4 = $.trim($('#address4').val());
     //为空判断
     if (userNameTrim == '' || mobilePhoneTrim == '' || nameTrim == '') {
         if (mobilePhoneTrim == "") {
-            checkReg.tool.switchInputStyle('error','mobilePhone', 'tipImgMobile','tipInfoMobilePhone');
+            checkReg.tool.switchInputStyle('error','mobilePhone', 'tipImgMobilePhone','tipInfoMobilePhone');
             $('#tipInfoMobilePhone').html(checkReg.lang_zh['3202']);
         }
         if (userNameTrim == "") {
@@ -454,7 +560,7 @@ function check_register(e) {
         return false;
     }
     //所填信息是否正确判断
-	if (mobilePhoneIsOk && userNameIsOk && emailIsOk && nameIsOk && birthdayIsOk && address4IsOk) {
+	if (mobilePhoneIsOk && userNameIsOk && emailIsOk && mobilePhoneByIsOk && nameIsOk && productionIsOk && birthdayIsOk && address4IsOk) {
 		return true;
 
 	} else {
@@ -468,8 +574,10 @@ function verifyRollback() {
 	checkReg.mobilePhone.checkMobilePhone();
 	checkReg.userName.checkUserName();
 	checkReg.email.checkEmail();
+	checkReg.mobilePhoneBy.checkMobilePhoneBy();
 	checkReg.name.checkName();
 	checkReg.birthday.checkBirthday();
+	checkReg.production.checkProduction();
 	checkReg.address.checkAddress();
 }
 //防止重复提交注册
@@ -510,6 +618,13 @@ $(function() {
 	$("#email").blur(function() {
 		checkReg.email.checkEmail();
 	});
+	// 推荐人手机号码
+	$('#mobilePhoneBy').bind("focus", function() {
+		checkReg.mobilePhoneBy.checkMobilePhoneByFocus();
+	});
+	$("#mobilePhoneBy").blur(function() {
+		checkReg.mobilePhoneBy.checkMobilePhoneBy();
+	});
 	//名称
 	$('#name').bind("focus", function() {
 		checkReg.name.checkNameFocus();
@@ -527,6 +642,17 @@ $(function() {
 	});
 	$("#birthday").on('blur', function() {
 		checkReg.birthday.checkBirthday();
+	});
+	//生产类别
+	$('#production').bind("focus", function() {
+		checkReg.production.checkProductionFocus();
+	});
+	$("#production").blur(function() {
+		checkReg.production.checkProduction();
+	});
+	//最多只允许输入50个汉字 100个字符
+	$('#production').on('keyup', function() {
+		checkReg.production.checkKeypress();
 	});
 	//详细地址
 	$('#address4').on("focus", function() {
