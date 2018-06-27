@@ -15,9 +15,12 @@
 
 <!-- Bootstrap CSS -->
 <!-- <link rel="stylesheet" th:href="@{/resources/css/bootstrap/bootstrap.min.css}"> -->
-	<link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet">
 <!-- Custom styles for this template -->
-<link th:href="@{/resources/css/form-validation.min.css}" rel="stylesheet">
+<link th:href="@{/resources/css/form-validation.min.css}"
+	rel="stylesheet">
 <title>企业商户注册|源产直达</title>
 
 </head>
@@ -40,49 +43,58 @@
 		<div class="row">
 			<div class="col-md-8 order-md-1">
 				<h4 class="mb-3">企业商户注册信息</h4>
-				<form method="POST"  th:action="@{/signup/company}"  th:object="${user}" >
+				<form method="POST" th:action="@{/signup/company}"
+					th:object="${user}">
 					<div class="mb-3">
-						<label for="mobile">手机号码</label> <input type="text"
-							class="form-control" th:field="*{mobilePhone}"  MaxLength="11" tabindex="10"
-							placeholder="例:88888888888">
+						<label for="mobilePhone">手机号码</label> <input type="text"
+							class="form-control" th:field="*{mobilePhone}" MaxLength="11"
+							tabindex="10" placeholder="例:88888888888">
 						<div class="invalid-feedback" id="tipInfoMobilePhone"
 							style="z-index: 1"></div>
 					</div>
 					<div class="mb-3">
 						<label for="userName">用户名</label> <input type="text"
-							class="form-control" th:field="*{userName}" MaxLength="20" tabindex="11"
-							placeholder="例:zhangsan_123">
+							class="form-control" th:field="*{userName}" MaxLength="20"
+							tabindex="11" placeholder="例:zhangsan_123">
 						<div class="invalid-feedback" id="tipInfoUserName"></div>
 
 					</div>
 					<div class="mb-3">
 						<label for="email">企业邮箱</label> <input type="text"
 							class="form-control" th:field="*{email}"
-							placeholder="例:zhangsan@yuanchanzhida.net" MaxLength="40"  tabindex="12">
+							placeholder="例:zhangsan@yuanchanzhida.net" MaxLength="40"
+							tabindex="12">
 						<div class="invalid-feedback" id="tipInfoEmail"></div>
 					</div>
-
+					<div class="mb-3">
+						<label for="mobilePhoneBy">推荐人手机号码</label> <input type="text"
+							class="form-control" th:field="*{mobilePhoneBy}" MaxLength="50"
+							tabindex="10" placeholder="例:88888888888">
+						<div class="invalid-feedback" id="tipInfoMobilePhoneBy"
+							style="z-index: 1"></div>
+					</div>
 					<hr class="mb-4">
 					<div class="row">
 						<div class="col-md-4 mb-3">
-							<label for="companyName">公司名称</label>
-							<input type="text"class="form-control" th:field="*{companyName}"  MaxLength="60"  tabindex="13"
-								   placeholder="请填写单位执照上的名称">
+							<label for="companyName">公司名称</label> <input type="text"
+								class="form-control" th:field="*{companyName}" MaxLength="60"
+								tabindex="13" placeholder="请填写单位执照上的名称">
 							<div class="tipInfoCompanyName" id="tipInfoCompanyName"></div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-4 mb-3">
-							<label for="production">主要生产类别</label>
-							<input type="text"class="form-control" th:field="*{production}"  MaxLength="60"  tabindex="14"
-								   placeholder="请填写主要产品类">
+							<label for="production">主要生产类别</label> <input type="text"
+								class="form-control" th:field="*{production}" MaxLength="60"
+								tabindex="14" placeholder="请填写主要产品类">
 							<div class="tipInfoProduction" id="tipInfoProduction"></div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-4 mb-3">
 							<label for="address1">公司地址</label> <select
-								class="custom-select d-block w-100" th:field="*{address1}"  tabindex="21">
+								class="custom-select d-block w-100" th:field="*{address1}"
+								tabindex="21">
 								<option value="">----请选择----</option>
 								<option th:each="item:${areaList}" th:value="${item.code}"
 									th:text="${item.name}"></option>
@@ -90,13 +102,15 @@
 						</div>
 						<div class="col-md-4 mb-3">
 							<label for="address2"></label> <select
-								class="custom-select d-block w-100" th:field="*{address2}"  tabindex="22">
+								class="custom-select d-block w-100" th:field="*{address2}"
+								tabindex="22">
 								<option value="">----请选择----</option>
 							</select>
 						</div>
 						<div class="col-md-4 mb-3">
 							<label for="address3"></label> <select
-								class="custom-select d-block w-100" th:field="*{address3}"  tabindex="23">
+								class="custom-select d-block w-100" th:field="*{address3}"
+								tabindex="23">
 								<option value="">----请选择----</option>
 							</select>
 						</div>
@@ -105,25 +119,22 @@
 						<div class="col-md-8 mb-3">
 							<label for="address4"></label> <input type="text"
 								class="form-control" th:field="*{address4}"
-								placeholder="请填写地址详细信息"  tabindex="30" Maxlength="100">
+								placeholder="请填写地址详细信息" tabindex="30" Maxlength="100">
 							<div class="invalid-feedback" id="tipInfoAddress4"></div>
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-md-6 mb-3">
-							<label for="telphone1">固定电话</label>
-							<input type="text"
+							<label for="telphone1">固定电话</label> <input type="text"
 								class="form-control" th:field="*{telphone1}"
 								onkeyup="this.value=this.value.replace(/\D/g,'')"
 								onafterpaste="this.value=this.value.replace(/\D/g,'')"
-								placeholder="区号  " MaxLength="4"  tabindex="41" >
-						    <input type="text"
-								class="form-control" th:field="*{telphone2}"
+								placeholder="区号  " MaxLength="4" tabindex="41"> <input
+								type="text" class="form-control" th:field="*{telphone2}"
 								onkeyup="this.value=this.value.replace(/\D/g,'')"
 								onafterpaste="this.value=this.value.replace(/\D/g,'')"
-								placeholder="座机号" MaxLength="8" tabindex="42">
-							 <input type="text"
-								class="form-control" th:field="*{telphone3}"
+								placeholder="座机号" MaxLength="8" tabindex="42"> <input
+								type="text" class="form-control" th:field="*{telphone3}"
 								onkeyup="this.value=this.value.replace(/\D/g,'')"
 								onafterpaste="this.value=this.value.replace(/\D/g,'')"
 								placeholder="分机号" MaxLength="8" tabindex="43">
@@ -134,11 +145,12 @@
 					<div class="row">
 						<div class="col-md-4 mb-3">
 							<label for="contact">联系人姓名</label> <input type="text"
-								class="form-control" th:field="*{contact}" MaxLength="30" tabindex="50">
+								class="form-control" th:field="*{contact}" MaxLength="30"
+								tabindex="50">
 							<div class="tipInfoContact" id="tipInfoContact"></div>
 						</div>
 					</div>
-						<hr class="mb-4">
+					<hr class="mb-4">
 					<div class="custom-control custom-checkbox">
 						<input type="checkbox" class="custom-control-input" id="subscribe"
 							name="subscribe" value="true" checked tabindex="51"> <label
@@ -159,20 +171,23 @@
 
 	<!-- 页面底部 -->
 	<div id="footer" th:include="layout :: footer"></div>
-	<input type="hidden" th:value="${contextPath}" name="contextPath" id="contextPath" />
-	
+	<input type="hidden" th:value="${contextPath}" name="contextPath"
+		id="contextPath" />
+
 	<script th:src="@{/resources/js/vendor/modernizr-3.6.0.min.js}"></script>
 	<!-- <script th:src="@{/resources/js/vendor/jquery-3.3.1.min.js}"></script> -->
 	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 	<!-- <script th:src="@{/resources/js/popper/popper.min.js}"></script>-->
-	<script src="https://cdn.bootcss.com/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script
+		src="https://cdn.bootcss.com/popper.js/1.14.3/umd/popper.min.js"></script>
 	<!-- <script th:src="@{/resources/js/bootstrap/bootstrap.min.js}"></script>-->
-	<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script
+		src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	<script th:src="@{/resources/js/vendor/holder.min.js}"></script>
 	<script th:src="@{/resources/js/plugins.min.js}"></script>
 	<script th:src="@{/resources/js/area.min.js}"></script>
 	<script th:src="@{/resources/js/signup/reg_company.min.js}"></script>
-		<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+	<!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
 	<!-- 暂时不用
 	<script>
 		window.ga = function() {

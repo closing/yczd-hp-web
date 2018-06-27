@@ -15,9 +15,12 @@
 
 <!-- Bootstrap CSS -->
 <!-- <link rel="stylesheet" th:href="@{/resources/css/bootstrap/bootstrap.min.css}"> -->
-	<link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link
+	href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css"
+	rel="stylesheet">
 <!-- Custom styles for this template -->
-<link th:href="@{/resources/css/form-validation.min.css}" rel="stylesheet">
+<link th:href="@{/resources/css/form-validation.min.css}"
+	rel="stylesheet">
 <title>用户注册|源产直达</title>
 
 </head>
@@ -42,49 +45,57 @@
 				<form method="POST" th:action="@{/signup/person}"
 					th:object="${user}">
 					<div class="mb-3">
-						<label for="mobile">手机号码</label>
-						<input type="text" class="form-control" th:field="*{mobilePhone}"
-								MaxLength="11" placeholder="例:88888888888" tabindex = "10">
-						<div class="invalid-feedback" id="tipInfoMobilePhone" style="z-index: 1"></div>
+						<label for="mobilePhone">手机号码</label> <input type="text"
+							class="form-control" th:field="*{mobilePhone}" MaxLength="11"
+							placeholder="例:88888888888" tabindex="10">
+						<div class="invalid-feedback" id="tipInfoMobilePhone"
+							style="z-index: 1"></div>
 					</div>
 					<div class="mb-3">
 						<label for="userName">用户名</label> <input type="text"
-							class="form-control" th:field="*{userName}" MaxLength="20" tabindex = "11"
-							placeholder="例:zhangsan_123">
+							class="form-control" th:field="*{userName}" MaxLength="20"
+							tabindex="11" placeholder="例:zhangsan_123">
 						<div class="invalid-feedback" id="tipInfoUserName"></div>
 
 					</div>
 					<div class="mb-3">
 						<label for="email">邮箱</label> <input type="text"
-							class="form-control" th:field="*{email}"  MaxLength="40" tabindex = "12"
-							placeholder="例:zhangsan@yuanchanzhida.net">
+							class="form-control" th:field="*{email}" MaxLength="40"
+							tabindex="12" placeholder="例:zhangsan@yuanchanzhida.net">
 						<div class="invalid-feedback" id="tipInfoEmail"></div>
+					</div>
+					<div class="mb-3">
+						<label for="mobilePhoneBy">推荐人手机号码</label> <input type="text"
+							class="form-control" th:field="*{mobilePhoneBy}" MaxLength="50"
+							tabindex="10" placeholder="例:88888888888">
+						<div class="invalid-feedback" id="tipInfoMobilePhoneBy"
+							style="z-index: 1"></div>
 					</div>
 					<hr class="mb-4">
 					<div class="row">
 						<div class="col-md-4 mb-3">
-							<label for="name">姓名</label>
-							<input type="text" class="form-control" th:field="*{name}" placeholder="例:张三"
-								tabindex = "13"  MaxLength="30">
+							<label for="name">姓名</label> <input type="text"
+								class="form-control" th:field="*{name}" placeholder="例:张三"
+								tabindex="13" MaxLength="30">
 							<div class="invalid-feedback" id="tipInfoName"></div>
 						</div>
 						<div class="col-md-4 mb-3">
 							<label for="sex">性别</label>
 							<div class="custom-control custom-radio">
 								<input id="male" name="sex" type="radio"
-									class="custom-control-input" value="1" checked tabindex = "21"> <label
-									class="custom-control-label" for="male">男</label>
+									class="custom-control-input" value="1" checked tabindex="21">
+								<label class="custom-control-label" for="male">男</label>
 							</div>
 							<div class="custom-control custom-radio">
 								<input id="female" name="sex" type="radio"
-									class="custom-control-input" value="0" tabindex = "22"> <label
+									class="custom-control-input" value="0" tabindex="22"> <label
 									class="custom-control-label" for="female">女</label>
 							</div>
 						</div>
 						<div class="col-md-4 mb-3">
 							<label for="birthday">出生日期</label> <input type="date"
 								class="form-control" th:field="*{birthday}"
-								placeholder="例:1988-01-01" tabindex = "30">
+								placeholder="例:1988-01-01" tabindex="30">
 							<div class="invalid-feedback" id="tipInfoBirthday">请填写出生日期</div>
 						</div>
 					</div>
@@ -92,7 +103,8 @@
 					<div class="row">
 						<div class="col-md-4 mb-3">
 							<label for="address1">地址</label> <select
-								class="custom-select d-block w-100" th:field="*{address1}"  tabindex = "31" >
+								class="custom-select d-block w-100" th:field="*{address1}"
+								tabindex="31">
 								<option value="">----请选择----</option>
 								<option th:each="item:${areaList}" th:value="${item.code}"
 									th:text="${item.name}"></option>
@@ -100,13 +112,15 @@
 						</div>
 						<div class="col-md-4 mb-3">
 							<label for="address2"></label> <select
-								class="custom-select d-block w-100" th:field="*{address2}"  tabindex = "32">
+								class="custom-select d-block w-100" th:field="*{address2}"
+								tabindex="32">
 								<option value="">----请选择----</option>
 							</select>
 						</div>
 						<div class="col-md-4 mb-3">
 							<label for="address3"></label> <select
-								class="custom-select d-block w-100" th:field="*{address3}"  tabindex = "33">
+								class="custom-select d-block w-100" th:field="*{address3}"
+								tabindex="33">
 								<option value="">----请选择----</option>
 							</select>
 						</div>
@@ -115,23 +129,23 @@
 						<div class="col-md-8 mb-3">
 							<label for="address4"></label> <input type="text"
 								class="form-control" th:field="*{address4}"
-								placeholder="请填写地址详细信息"  tabindex = "34"  MaxLength="60">
+								placeholder="请填写地址详细信息" tabindex="34" MaxLength="60">
 							<div class="invalid-feedback" id="tipInfoAddress4"></div>
 						</div>
 					</div>
 					<hr class="mb-4">
 					<div class="custom-control custom-checkbox">
 						<input type="checkbox" class="custom-control-input" id="subscribe"
-							name="subscribe" value="true" checked  tabindex = "35"> <label
+							name="subscribe" value="true" checked tabindex="35"> <label
 							class="custom-control-label" for="subscribe">订阅</label>
 						<div class="invalid-feedback" id="tipInfoSubscribe"></div>
 					</div>
 
 					<hr class="mb-4">
 					<button class="btn btn-primary btn-lg btn-block" id="saveButton"
-							type="submit"  tabindex = "40">注册</button>
+						type="submit" tabindex="40">注册</button>
 					<button class="btn btn-primary btn-lg btn-block disabled invisible"
-						id="saveButtonUnclick" type="submit"  tabindex = "41">注册</button>
+						id="saveButtonUnclick" type="submit" tabindex="41">注册</button>
 				</form>
 			</div>
 		</div>
@@ -148,9 +162,11 @@
 	<!-- <script th:src="@{/resources/js/vendor/jquery-3.3.1.min.js}"></script> -->
 	<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 	<!-- <script th:src="@{/resources/js/popper/popper.min.js}"></script>-->
-	<script src="https://cdn.bootcss.com/popper.js/1.14.3/umd/popper.min.js"></script>
+	<script
+		src="https://cdn.bootcss.com/popper.js/1.14.3/umd/popper.min.js"></script>
 	<!-- <script th:src="@{/resources/js/bootstrap/bootstrap.min.js}"></script>-->
-	<script src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+	<script
+		src="https://cdn.bootcss.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 	<script th:src="@{/resources/js/vendor/holder.min.js}"></script>
 	<script th:src="@{/resources/js/plugins.min.js}"></script>
 	<script th:src="@{/resources/js/area.min.js}"></script>

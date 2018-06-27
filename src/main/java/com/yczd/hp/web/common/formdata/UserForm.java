@@ -5,6 +5,7 @@ public class UserForm {
 	private String userType;
 	private String userName;
 	private String mobilePhone;
+	private String mobilePhoneBy;
 	private String email;
 	private String drivingLicense;
 	private String drivingLicenseType;
@@ -215,6 +216,14 @@ public class UserForm {
 
 	public void setCarType(String carType) {
 		this.carType = carType;
+	}
+
+	public String getMobilePhoneBy() {
+		return mobilePhoneBy;
+	}
+
+	public void setMobilePhoneBy(String mobilePhoneBy) {
+		this.mobilePhoneBy = mobilePhoneBy;
 	}
 
 }
